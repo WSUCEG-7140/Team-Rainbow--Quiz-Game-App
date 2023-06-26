@@ -1,0 +1,243 @@
+.verify-container{
+    display:flex;
+    margin:auto;
+    flex-flow:column;
+}
+
+.verify-container button{
+    margin-left:-30px;
+}
+
+.verify-container button:hover{
+    cursor:pointer;
+}
+
+.home-cont{
+    display:flex;
+    margin:auto;
+    flex-direction:column;
+}
+
+.profile-section{
+    display:flex;
+    width:50vw;
+    height:15vw;
+    border-radius:25px;
+    justify-content: space-between;
+}
+
+.pic{
+    /* From https://css.glass */
+    background: radial-gradient(  at right bottom,#ffd9009f, #ff9500 );
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(0, 0, 0, 0.26);
+    width:15vw;
+    height:15vw;
+    border-radius:25px;
+    transition: 0.4s;
+    
+}
+
+
+.pic-img{
+    z-index:2;
+    background: none;
+    box-shadow: none;
+    border: none;
+    transition: 0s !important;
+}
+.pic-img:hover{
+    transition: 0s !important;
+    filter:invert(1);
+}
+
+.profile{
+    /* From https://css.glass */
+    background: radial-gradient(  at right bottom, #ff9500, #ffd9009f 80%);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(0, 0, 0, 0.26);
+    width:34vw;
+    height:15vw;
+    border-radius:25px;
+    padding:25px;
+    display:flex;
+    flex-direction: column;
+    transition: 0.4s;
+}
+.profile h1, .profile p {
+    filter: invert(0.85);
+}
+
+.profile-icon{
+    height:5vw;
+    width:12vw;
+    background:rgba(0, 0, 0, 0.4);
+    border-radius: 16px;
+    border: 1px solid rgba(0, 0, 0, 0.26);
+    padding:0;
+    display:flex;
+}
+
+.profile-icon p{
+    filter:invert(0.85);
+    margin:auto;
+    margin-left:-1vw;
+    display:flex;
+    flex-direction: column;
+}
+
+.profile-icon:hover{
+    filter:invert(0);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+}
+
+.icon-main{
+    filter:invert(1);
+}
+.icon-main:hover{
+filter:invert(1);
+}
+.dummy{
+    width:50vw;
+    height:20vw;
+    margin-top:1vw;
+    border-radius:25px;
+    display:flex;
+    justify-content: space-between;
+}
+.dummy-b{
+    background: radial-gradient(  at left top,#ff9500,#ffd9009f );
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(0, 0, 0, 0.26);
+    width:24.5vw;
+    height:20vw;
+    transition: 0.4s;
+    padding:10px;
+    display:flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+.dummy-a {
+    /* From https://css.glass */
+    background: radial-gradient(  at left bottom,#ffd9009f, #ff9500 );
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(0, 0, 0, 0.26);
+    width:24.5vw;
+    height:20vw;
+    transition: 0.4s;
+    padding:10px;
+    display:flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.quizes-section{
+    height:80px;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 16px;
+    border: 1px solid rgba(0, 0, 0, 0.26);
+    margin-bottom:20px;
+    padding:5px;
+    display:flex;
+    justify-content: space-between;
+}
+.quizes-section:hover{
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+}
+.quiz-completed{
+    filter:invert(0.5);
+}
+.quiz-completed:hover{
+    cursor: not-allowed !important;
+    box-shadow: 0;
+}
+
+.quiz-title{
+    display:flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-left:10px;
+}
+
+.main-title h3{
+    margin:0;
+    filter:invert(0.85);
+}
+
+.quiz-heading{
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 16px;
+    border: 1px solid rgba(0, 0, 0, 0.26);
+    width:100%;
+    display:flex;
+    margin-bottom:20px;
+}
+
+.max-mark{
+    filter:invert(0.85);
+}
+
+.take-quiz{
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 25px;
+    border: 1px solid rgba(0, 0, 0, 0.26);
+    height:75%;
+    margin-left:auto;
+    margin-top:auto;
+    margin-bottom: auto;
+    margin-right:15px;
+    padding-left:15px;
+    padding-right:15px;
+    filter:invert(0.85);
+    cursor:pointer;
+}
+
+.take-quiz:hover{
+    cursor:poiner;
+    filter:invert(0)
+}
+
+.take-quiz:disabled{
+    cursor: not-allowed;
+    filter:invert(1)
+}
+
+.score{
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.26);
+    height:75%;
+    margin-left:auto;
+    margin-top:auto;
+    margin-bottom: auto;
+    margin-right:15px;
+    padding:10px;
+    filter:invert(0.85);
+}
+
+.quiz-set{
+    max-height:15vw;
+    overflow:scroll;
+}
+
+
+.quiz-heading h1{
+    margin-left:auto;
+    margin-right:auto;
+    filter:invert(0.85);
+}
+
+.quiz-take-quiz:hover{
+    text-decoration: none;
+    cursor:inherit;
+}
+
+.profile:hover, .pic:hover, .dummy-a:hover, .dummy-b:hover{
+    /* box-shadow: 0 4px 30px rgba(255, 255, 255, 0.5); */
+    filter:invert(0.75);
+    
+}
