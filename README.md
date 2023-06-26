@@ -17,30 +17,30 @@ To run the Quiz Game app locally,follow these steps:
 
 1. Clone the repository:
 
-bash
+```shell
 git clone https://github.com/WSUCEG-7140/Team-Rainbow--Quiz-Game-App
 
 
 2. Navigate to the project directory:
 
-bash
+```shell
 cd  quiz-game
 
 
 3. Install the dependencies:
 
-bash
+```shell
 npm install
 
 
 4. Start the development server:
 
-bash
+```shell
 npm  run dev
 
 5. You need to have :
 
- bash
+ ```shell
  node-v16.17.0-x64msi
 
  
