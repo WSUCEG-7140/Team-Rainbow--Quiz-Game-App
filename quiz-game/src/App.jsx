@@ -1,8 +1,12 @@
-import { BrowserRouter, Route } from "react-router-dom"
+import { useState } from 'react'
+import reactLogo from './assets/react.svg'
+import viteLogo from '/vite.svg'
 import './App.css'
+import { BrowserRouter, Route } from "react-router-dom"
+import * as routes from "./constants/routes"
 import HomePage from './Components/Student/Home'
 import Quiz from './Components/Student/Quiz'
-import * as routes from "./constants/routes"
+
 
 function App() {
   return (
