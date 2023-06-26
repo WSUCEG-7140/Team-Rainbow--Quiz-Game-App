@@ -1,0 +1,86 @@
+.quizContainer{
+    display:flex;
+    justify-content: space-evenly;
+    margin:auto;
+    text-align:center;
+}
+
+.q-no{
+    height:600px;
+    width:15vw;
+    margin-right:12px;
+    /* From https://css.glass */
+    background: rgba(0, 0, 0, 0.4);
+    display:flex;
+    flex-flow:column;
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(0, 0, 0, 0.26);
+}
+
+.q-no ul{
+    list-style:none;
+    display:flex;
+    flex-wrap:wrap;
+    justify-content: space-evenly;
+    margin-left:-15px;
+}
+
+.option{
+    margin:15px;
+    height:50px;
+    width:50px;
+    padding:10px;
+    padding-top:10px;
+    padding-left:12px;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    border: 1px solid rgba(0, 0, 0, 0.26);
+}
+
+.completed{
+    background:rgba(1, 1, 1, 0.5);
+}
+
+.current{
+    background:rgba(0, 255, 42, 0.5);
+    cursor:pointer;
+}
+.option:hover{
+    cursor: not-allowed;
+}
+
+.q-cont{
+    
+    margin-left:12px;
+    padding:10px;
+    /* From https://css.glass */
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(0, 0, 0, 0.26);
+}
+
+.question{
+    height:200px;
+    width:50vw;
+    
+}
+
+.options{
+    margin-top:10px;
+    height:300px;
+    width:50vw;
+    display:flex;
+    text-align:center;
+}
+
+.student_next{
+    background:black;
+    cursor: pointer;
+}
+
+.student_next:disabled{
+    background: rgb(127, 125, 125);
+    cursor: not-allowed;
+}
