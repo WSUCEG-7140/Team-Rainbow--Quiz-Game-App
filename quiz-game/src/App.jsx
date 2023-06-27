@@ -8,6 +8,7 @@ import SignInPage from './Components/SignIn'
 import HomePage from './Components/Student/Home'
 import Quiz from './Components/Student/Quiz'
 import AccountPage from './Components/Account'
+import PasswordForgetPage from './Components/PasswordForget'
 
 
 function App() {
@@ -17,7 +18,13 @@ function App() {
       <Route exact path={routes.SIGN_IN} component={SignInPage} />
       <Route exact path={routes.HOME} component={HomePage} />
       <Route exact path={routes.ACCOUNT} component={AccountPage} />
+      <Route
+        exact
+        path={routes.PASSWORD_FORGET}
+        component={PasswordForgetPage}
+      />
       <Route exact path={routes.QUIZ+':id'} component={Quiz} />
+
       </div>
   </BrowserRouter> 
   )
