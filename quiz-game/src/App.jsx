@@ -4,6 +4,7 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import { BrowserRouter, Route } from "react-router-dom"
 import * as routes from "./constants/routes"
+import SignInPage from './Components/SignIn'
 import HomePage from './Components/Student/Home'
 import Quiz from './Components/Student/Quiz'
 import AccountPage from './Components/Account'
@@ -13,6 +14,7 @@ function App() {
   return (
       <BrowserRouter>
       <div className='app' >
+      <Route exact path={routes.SIGN_IN} component={SignInPage} />
       <Route exact path={routes.HOME} component={HomePage} />
       <Route exact path={routes.ACCOUNT} component={AccountPage} />
       <Route exact path={routes.QUIZ+':id'} component={Quiz} />
