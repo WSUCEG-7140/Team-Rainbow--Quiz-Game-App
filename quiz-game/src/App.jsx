@@ -6,6 +6,7 @@ import { BrowserRouter, Route } from "react-router-dom"
 import * as routes from "./constants/routes"
 import HomePage from './Components/Student/Home'
 import Quiz from './Components/Student/Quiz'
+import AccountPage from './Components/Account'
 
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
       <BrowserRouter>
       <div className='app' >
       <Route exact path={routes.HOME} component={HomePage} />
+      <Route exact path={routes.ACCOUNT} component={AccountPage} />
       <Route exact path={routes.QUIZ+':id'} component={Quiz} />
       </div>
   </BrowserRouter> 
