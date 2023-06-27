@@ -1,0 +1,38 @@
+.landing-container{
+    display:flex;
+    text-align:center;
+    justify-content: space-evenly;
+    flex-direction: column;
+}
+
+.ex {/* From https://css.glass */
+   background: rgba(0,0,0,0.4);
+    margin:auto;
+    display:flex;
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(0, 0, 0, 0.26);
+}
+
+.txt-int{
+    margin:auto;
+}
+
+.cont1{
+    width:850px;
+    height:300px;
+    margin-top:25px;
+    margin-bottom:25px
+}
+
+.cont2, .cont3{
+    width:400px;
+    height:300px;
+    margin:25px;
+}
+
+.grp-ex{
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}

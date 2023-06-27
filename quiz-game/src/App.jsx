@@ -7,12 +7,13 @@ import * as routes from "./constants/routes"
 import HomePage from './Components/Student/Home'
 import Quiz from './Components/Student/Quiz'
 import AccountPage from './Components/Account'
-
+import LandingPage from './Components/Landing'
 
 function App() {
   return (
       <BrowserRouter>
       <div className='app' >
+      <Route exact path={routes.LANDING} component={LandingPage}/>
       <Route exact path={routes.HOME} component={HomePage} />
       <Route exact path={routes.ACCOUNT} component={AccountPage} />
       <Route exact path={routes.QUIZ+':id'} component={Quiz} />
