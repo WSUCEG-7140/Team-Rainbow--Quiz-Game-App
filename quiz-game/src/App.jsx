@@ -9,13 +9,14 @@ import SignInPage from './Components/SignIn'
 import HomePage from './Components/Student/Home'
 import Quiz from './Components/Student/Quiz'
 import AccountPage from './Components/Account'
-
+import LandingPage from './Components/Landing'
 
 function App() {
   return (
       <BrowserRouter>
       <div className='app' >
       <Navbar />
+      <Route exact path={routes.LANDING} component={LandingPage}/>
       <Route exact path={routes.SIGN_IN} component={SignInPage} />
       <Route exact path={routes.HOME} component={HomePage} />
       <Route exact path={routes.ACCOUNT} component={AccountPage} />
