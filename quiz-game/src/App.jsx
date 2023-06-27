@@ -2,6 +2,7 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import Navbar from './Components/Navbar'
 import { BrowserRouter, Route } from "react-router-dom"
 import * as routes from "./constants/routes"
 import SignInPage from './Components/SignIn'
@@ -14,6 +15,7 @@ function App() {
   return (
       <BrowserRouter>
       <div className='app' >
+      <Navbar />
       <Route exact path={routes.LANDING} component={LandingPage}/>
       <Route exact path={routes.SIGN_IN} component={SignInPage} />
       <Route exact path={routes.HOME} component={HomePage} />
