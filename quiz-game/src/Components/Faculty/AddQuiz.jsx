@@ -1,10 +1,20 @@
 import React, { useEffect, useState } from 'react'
-import './AddQuiz.css'
-import { db } from '../../firebase'
 import { Button as Botto } from 'reactstrap'
+import { db } from '../../firebase'
+import './AddQuiz.css'
 function AddQuiz(propss) {
   const [title, setTitle] = useState('')
- 
+  const createQuiz = ()=>{
+    
+    db.doCreateQuiz(title).then(()=>{
+      alert('Quiz Created successfully!');
+      propss.setIsOpen(false);
+      
+    }).catch((error) => {
+      alert("Error creating Quiz: ", error);
+    });
+    
+  }
 
   useEffect(()=>{},[title])
   return (
