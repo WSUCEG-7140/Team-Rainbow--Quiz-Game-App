@@ -1,21 +1,13 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import Navbar from './Components/Navbar'
 import { BrowserRouter, Route } from "react-router-dom"
-import * as routes from "./constants/routes"
+import './App.css'
+import AccountPage from './Components/Account'
+import LandingPage from './Components/Landing'
+import Navbar from './Components/Navbar'
+import PasswordForgetPage from './Components/PasswordForget'
 import SignInPage from './Components/SignIn'
 import HomePage from './Components/Student/Home'
 import Quiz from './Components/Student/Quiz'
-import AccountPage from './Components/Account'
-import LandingPage from './Components/Landing'
-<<<<<<< HEAD
-import PasswordForgetPage from './Components/PasswordForget'
-
-=======
-import LandingPage from './Components/Landing'
->>>>>>> f8a8487e9ecf8f74354042b37340125119ad375a
+import * as routes from "./constants/routes"
 
 function App() {
   return (
