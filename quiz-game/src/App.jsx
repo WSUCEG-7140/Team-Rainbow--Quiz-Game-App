@@ -4,10 +4,11 @@ import AccountPage from './Components/Account'
 import LandingPage from './Components/Landing'
 import Navbar from './Components/Navbar'
 import PasswordForgetPage from './Components/PasswordForget'
+import * as routes from "./constants/routes"
 import SignInPage from './Components/SignIn'
+import SignUpPage from './Components/SignUp'
 import HomePage from './Components/Student/Home'
 import Quiz from './Components/Student/Quiz'
-import * as routes from "./constants/routes"
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <Navbar />
       <Route exact path={routes.LANDING} component={LandingPage}/>
       <Route exact path={routes.SIGN_IN} component={SignInPage} />
+      <Route exact path={routes.SIGN_UP} component={SignUpPage} />
       <Route exact path={routes.HOME} component={HomePage} />
       <Route exact path={routes.ACCOUNT} component={AccountPage} />
       <Route
@@ -25,7 +27,8 @@ function App() {
       />
       <Route exact path={routes.QUIZ+':id'} component={Quiz} />
 
-      </div>
+      
+        </div>
   </BrowserRouter> 
   )
 }
