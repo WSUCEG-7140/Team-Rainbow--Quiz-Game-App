@@ -7,10 +7,8 @@ import * as routes from '../../constants/routes'
 import './FacultyHome.css'
 import { styled } from '@mui/material/styles';
 import Switch from '@mui/material/Switch';
-import ResultGraph from './ResultGraph';
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import ReactModal from 'react-modal';
 import { Fade } from 'react-reveal';
 
 const IOSSwitch = styled((props) => (
@@ -66,9 +64,11 @@ const IOSSwitch = styled((props) => (
 
 function FacultyHome() {
 
- 
+  const [quizData, setQuizData] = useState([])
   const [activeQuiz, setActiveQuiz] = useState()
- 
+  const [quizAttempts, setQuizAttempts] = useState([])
+  const [addQuizModal,setAddQuizModal] = useState(false)
+  const [EditQuizModal,setEditQuizModal] = useState(false)
 
   const doUpdate =(id,status)=>{
     console.log(activeQuiz)
@@ -95,7 +95,32 @@ function FacultyHome() {
 
   return (
     <div className="faculty-home">
-      
+      <Fade left>
+      <div className="faculty-quizes">
+        <div className='faculty-quiz-heading'>
+          <h1>All Quizes </h1>
+        </div>
+        
+        
+        <div className="faculty-quiz-set "  >
+          {
+            quizData.map((i,index) => (
+              <div className={'quizes-section faculty-quizes-section ' + ((activeQuiz == i) ? 'faculty-active-quiz' : '')} onClick={() => { console.log('Qid: ', i.id); setActiveQuiz(i) }}>
+                {(activeQuiz == undefined) ? setActiveQuiz(i):''}
+                <div className="quiz-title">
+                  <div className="main-title"><h3>{i.data['title']}</h3></div>
+                  <div className="max-mark">max-mark: {i.data['max_mark']}</div>
+                </div>
+                <div style={{ display: 'flex' }}>
+                  <button className="take-quiz" onClick={()=>{setEditQuizModal(true)}}>Edit <AppRegistrationIcon /></button>
+                  <button className="take-quiz" onClick={(e)=>{confirm('Do you want to delete the Quiz?')?db.doDelteQuiz(i.id):''}} >Delete <DeleteForeverIcon/></button>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+      </Fade>
       <Fade right>
       {activeQuiz!=undefined && <div className="faculty-home-admin">
         <div className="quiz-title">
