@@ -3,19 +3,16 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import Navbar from './Components/Navbar'
-import { BrowserRouter, Route } from "react-router-dom"
+import { BrowserRouter, Route , Switch } from "react-router-dom"
 import * as routes from "./constants/routes"
 import SignInPage from './Components/SignIn'
+import SignUpPage from './Components/SignUp'
 import HomePage from './Components/Student/Home'
 import Quiz from './Components/Student/Quiz'
 import AccountPage from './Components/Account'
 import LandingPage from './Components/Landing'
-<<<<<<< HEAD
 import PasswordForgetPage from './Components/PasswordForget'
-
-=======
 import LandingPage from './Components/Landing'
->>>>>>> f8a8487e9ecf8f74354042b37340125119ad375a
 
 function App() {
   return (
@@ -24,6 +21,7 @@ function App() {
       <Navbar />
       <Route exact path={routes.LANDING} component={LandingPage}/>
       <Route exact path={routes.SIGN_IN} component={SignInPage} />
+      <Route exact path={routes.SIGN_UP} component={SignUpPage} />
       <Route exact path={routes.HOME} component={HomePage} />
       <Route exact path={routes.ACCOUNT} component={AccountPage} />
       <Route
@@ -33,7 +31,8 @@ function App() {
       />
       <Route exact path={routes.QUIZ+':id'} component={Quiz} />
 
-      </div>
+      
+        </div>
   </BrowserRouter> 
   )
 }
