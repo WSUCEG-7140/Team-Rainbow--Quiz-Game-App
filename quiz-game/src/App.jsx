@@ -9,6 +9,7 @@ import SignInPage from './Components/SignIn'
 import SignUpPage from './Components/SignUp'
 import HomePage from './Components/Student/Home'
 import Quiz from './Components/Student/Quiz'
+import AddQuiz from './Components/Faculty/AddQuiz'
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         component={PasswordForgetPage}
       />
       <Route exact path={routes.QUIZ+':id'} component={Quiz} />
+      <Route exact path={routes.ADD_QUIZ} component={AddQuiz} />
 
       
         </div>
