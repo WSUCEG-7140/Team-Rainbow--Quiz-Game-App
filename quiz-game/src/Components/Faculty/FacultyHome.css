@@ -1,0 +1,172 @@
+.faculty-home{
+    display:flex;
+    flex-flow:wrap;
+    justify-content: space-evenly;
+    width:80vw;
+    margin:auto;
+}
+
+.MuiChartsAxis-tickLabel{
+    color:red !important;
+}
+
+.faculty-quizes{
+    min-width:25vw;
+    min-height:500px;
+    height:75vh;
+    padding:10px;
+    display:flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin:auto;
+    text-align:center;
+    /* From https://css.glass */
+    background: radial-gradient(at top right, #0c9ee7,#73aa06);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(0, 0, 0, 0.26);
+}
+
+.add-quiz-modal{
+    height:80%;
+    width:80%;
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    right: 40px;
+    bottom: 40px;
+   /* From https://css.glass */
+   background: rgba(20, 18, 18, 0.5);
+   border-radius: 16px;
+   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+   backdrop-filter: blur(10px);
+   -webkit-backdrop-filter: blur(20px);
+   border: 1px solid rgba(0, 0, 0, 0.26);
+    margin:auto;
+    padding:20px;
+}
+.add-quiz-modal-overlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(48, 47, 47, 0.25);
+   border-radius: 16px;
+   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+   backdrop-filter: blur(10px);
+   border: 1px solid rgba(0, 0, 0, 0.26);
+}
+.faculty-active-quiz{
+    background:rgb(70, 185, 166);
+}
+
+.faculty-active-quiz:hover{
+    background:rgb(70, 185, 166) !important;
+}
+
+.faculty-quiz-set {
+    overflow: -moz-scrollbars-vertical; 
+    min-height:300px;
+    max-height:65vh !important;
+    overflow-y:scroll; 
+}
+
+.faculty-quizes-section{
+    background-position: center;
+  transition: background 0.5s;
+  filter:none !important;
+  cursor: pointer;
+}
+.faculty-quizes-section:hover {
+    background: #0c9ee787 radial-gradient(circle, transparent 1%, #0c9ee7 1%) center/15000%;
+    /* background:rgb(151, 150, 150); */
+  }
+.faculty-quizes-section:active {
+    background-color: #73aa06;
+    background-size: 100%;
+    transition: background 0s;
+  }
+.faculty-quiz-heading{
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 16px;
+    border: 1px solid rgba(0, 0, 0, 0.26);
+    width:100%;
+    display:flex;
+    margin-bottom:20px;
+}
+
+.faculty-quiz-heading h1{
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.faculty-home-admin{
+    margin:auto;
+    display:flex;
+    flex-direction: column;
+    /* From https://css.glass */
+    background: radial-gradient(at top left, #0c9ee7,#73aa06);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(0, 0, 0, 0.26);
+    padding:10px;
+    min-height:500px;
+    height:75vh;
+}
+
+.add-quiz-faculty{
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 16px;
+    border: 1px solid rgba(0, 0, 0, 0.26);
+    width:80%;
+    display:flex;
+    margin-left:auto;
+    margin-right:auto;
+    margin-bottom:20px;
+    transition: 0.25s;
+}
+
+.add-quiz-faculty:hover{
+    box-shadow: 0 4px 30px rgba(255, 255, 255, 0.75);
+    width:90%;
+    cursor:pointer;
+    font-size:2rem;
+}
+
+a:link{
+    text-decoration: none !important;
+}
+
+.add-quiz-faculty h3{
+    margin-left:auto;
+    margin-right:auto;
+    
+}
+
+.faculty-quiz-results{
+    display:flex;
+    justify-content: center;
+    margin:auto;
+    height:100%;
+    width:100%;
+}
+
+.faculty-quiz-props{
+    display:flex;
+    justify-content: space-evenly;
+    min-width:50vw;
+    list-style: none; 
+}
+
+.faculty-quiz-props li{
+    height:75px;
+    padding:10px;
+    margin:auto;
+    width:250px;
+    /* From https://css.glass */
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.75);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
