@@ -115,7 +115,15 @@ function EditQuiz({ qid }) {
         setChanged(!isEqual(currentQ, value));
     }, [currentQ])
     useEffect(() => { setChanged(!isEqual(currentQ, value)); }, [value])
-
+const validate = (id) => {
+        if (changed) {
+            if (confirm('You have not saved your changes!, Do you want to move to other question?') == true)
+                setIndexer(id)
+        }
+        else {
+            setIndexer(id)
+        }
+    }
     return (
         <div className='edit-quiz-main'>
             <Zoom duration={500}>
@@ -199,7 +207,11 @@ function EditQuiz({ qid }) {
 
                         </div>
                     </div>
-                    
+                    <div style={{ display: 'flex', margin: 'auto', justifyContent: 'space-evenly', width: '100%', padding: '15px' }}>
+                        <Butto className='' color='error' variant='contained' onClick={() => { DeleteQuestion() }}  >Delete Question <DeleteForeverIcon />  </Butto>
+                        <Butto className='add-q' onClick={() => CreateEmptyQuestion()} disabled={qCount > 9 ? true : false}>Create Question ▶  </Butto>
+                        <Butto className='' disabled={!changed} color='success' variant='contained' onClick={() => updateQuestion()}  >Save Question <SaveAsIcon /> </Butto>
+                    </div>
                 </div>
             </Zoom>
         </div>
