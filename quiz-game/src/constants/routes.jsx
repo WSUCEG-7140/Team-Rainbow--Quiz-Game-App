@@ -7,4 +7,5 @@ export const PASSWORD_FORGET = "/pw-forget";
 export const HOME = "/home";
 export const QUIZ = "/quiz/";
 export const ACCOUNT = "/account";
-
+//Faculty authenticated routes
+export const ADD_QUIZ = '/add_quiz'
