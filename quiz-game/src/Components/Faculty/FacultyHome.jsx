@@ -7,8 +7,12 @@ import * as routes from '../../constants/routes'
 import './FacultyHome.css'
 import { styled } from '@mui/material/styles';
 import Switch from '@mui/material/Switch';
+import ResultGraph from './ResultGraph';
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import ReactModal from 'react-modal';
+import AddQuiz from './AddQuiz';
+import EditQuiz from './EditQuiz';
 import { Fade } from 'react-reveal';
 
 const IOSSwitch = styled((props) => (
@@ -100,7 +104,30 @@ function FacultyHome() {
         <div className='faculty-quiz-heading'>
           <h1>All Quizes </h1>
         </div>
-        
+        <div className="add-quiz-faculty">
+          <h3 style={{ textDecoration: 'none' }} onClick={()=>{setAddQuizModal(true)}} >Add Quiz <AddCardIcon style={{ fontSize: 'inherit' }} /></h3>
+          
+          <ReactModal
+          isOpen={addQuizModal}
+          contentLabel="Example Modal"
+          onRequestClose={()=>setAddQuizModal(false)}
+          className='add-quiz-modal'
+          overlayClassName="add-quiz-modal-overlay"
+          >
+            <button onClick={()=>{setAddQuizModal(false)}} > X </button>
+            <AddQuiz setIsOpen={(e)=>{setAddQuizModal(e)}} />
+          </ReactModal>
+          
+          <ReactModal
+          isOpen={EditQuizModal}
+          contentLabel="Example Modal"
+          className='add-quiz-modal'
+          overlayClassName="add-quiz-modal-overlay"
+          >
+            <button onClick={()=>{setEditQuizModal(false)}} > X </button>
+            <EditQuiz qid={activeQuiz?.id} setIsOpen={(e)=>{setEditQuizModal(e)}} />
+          </ReactModal>
+        </div>
         
         <div className="faculty-quiz-set "  >
           {

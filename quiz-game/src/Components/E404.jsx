@@ -1,8 +1,8 @@
 import React from 'react'
-import { Zoom } from 'react-reveal'
-import Flash from 'react-reveal/Flash'
-import { Link } from 'react-router-dom'
+import {Link } from 'react-router-dom'
+import  Flash from 'react-reveal/Flash'
 import './E404.css'
+import { Zoom } from 'react-reveal'
 function E404() {
   return (
     <Zoom>
