@@ -1,16 +1,16 @@
-import React from 'react'
-import './EditQuiz.css'
-import { db } from '../../firebase'
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
+import SaveAsIcon from '@mui/icons-material/SaveAs'
 import { Button as Butto } from '@mui/material'
-import { useState } from 'react'
-import Radio from '@mui/material/Radio';
-import RadioGroup from '@mui/material/RadioGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import TextField from '@mui/material/TextField';
-import { useEffect } from 'react'
-import { styled } from '@mui/material/styles';
-import isEqual from 'lodash.isequal';
+import FormControlLabel from '@mui/material/FormControlLabel'
+import Radio from '@mui/material/Radio'
+import RadioGroup from '@mui/material/RadioGroup'
+import TextField from '@mui/material/TextField'
+import { styled } from '@mui/material/styles'
+import isEqual from 'lodash.isequal'
+import React, { useEffect, useState } from 'react'
 import { Zoom } from 'react-reveal'
+import { db } from '../../firebase'
+import './EditQuiz.css'
 const CustomTextField = styled((props) => (
     <TextField InputProps={{ disableUnderline: true }} {...props} />
 ))(({ theme }) => ({
@@ -116,6 +116,21 @@ function EditQuiz({ qid }) {
     }, [currentQ])
     useEffect(() => { setChanged(!isEqual(currentQ, value)); }, [value])
 
+    const validate = (id) => {
+        if (changed) {
+            if (confirm('You have not saved your changes!, Do you want to move to other question?') == true)
+                setIndexer(id)
+        }
+        else {
+            setIndexer(id)
+        }
+    }
+
+    const DeleteQuestion = () => {
+        if (confirm('Do you really want to delete this question?') == true)
+            db.doDeleteQuestion(qid, currentQ.id).then(() => { alert('Question deleted succesfully!'); setIndexer(totalQuestions[0].id) })
+    }
+
     return (
         <div className='edit-quiz-main'>
             <Zoom duration={500}>
@@ -199,7 +214,11 @@ function EditQuiz({ qid }) {
 
                         </div>
                     </div>
-                    
+                    <div style={{ display: 'flex', margin: 'auto', justifyContent: 'space-evenly', width: '100%', padding: '15px' }}>
+                        <Butto className='' color='error' variant='contained' onClick={() => { DeleteQuestion() }}  >Delete Question <DeleteForeverIcon />  </Butto>
+                        <Butto className='add-q' onClick={() => CreateEmptyQuestion()} disabled={qCount > 9 ? true : false}>Create Question ▶  </Butto>
+                        <Butto className='' disabled={!changed} color='success' variant='contained' onClick={() => updateQuestion()}  >Save Question <SaveAsIcon /> </Butto>
+                    </div>
                 </div>
             </Zoom>
         </div>
