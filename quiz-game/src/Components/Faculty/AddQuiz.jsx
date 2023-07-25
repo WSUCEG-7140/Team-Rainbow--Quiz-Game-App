@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { Button as Botto } from 'reactstrap'
-import { db } from '../../firebase'
 import './AddQuiz.css'
+import { db } from '../../firebase'
+import { Button as Botto } from 'reactstrap'
 function AddQuiz(propss) {
   const [title, setTitle] = useState('')
   const createQuiz = ()=>{
