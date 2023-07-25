@@ -116,7 +116,11 @@ function EditQuiz({ qid }) {
     }, [currentQ])
     useEffect(() => { setChanged(!isEqual(currentQ, value)); }, [value])
 
+const validate = (id) => {
+
+
     const validate = (id) => {
+
         if (changed) {
             if (confirm('You have not saved your changes!, Do you want to move to other question?') == true)
                 setIndexer(id)
@@ -126,11 +130,11 @@ function EditQuiz({ qid }) {
         }
     }
 
+
     const DeleteQuestion = () => {
         if (confirm('Do you really want to delete this question?') == true)
             db.doDeleteQuestion(qid, currentQ.id).then(() => { alert('Question deleted succesfully!'); setIndexer(totalQuestions[0].id) })
     }
-
     return (
         <div className='edit-quiz-main'>
             <Zoom duration={500}>
