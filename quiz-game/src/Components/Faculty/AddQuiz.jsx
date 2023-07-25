@@ -4,7 +4,17 @@ import { db } from '../../firebase'
 import { Button as Botto } from 'reactstrap'
 function AddQuiz(propss) {
   const [title, setTitle] = useState('')
- 
+  const createQuiz = ()=>{
+    
+    db.doCreateQuiz(title).then(()=>{
+      alert('Quiz Created successfully!');
+      propss.setIsOpen(false);
+      
+    }).catch((error) => {
+      alert("Error creating Quiz: ", error);
+    });
+    
+  }
 
   useEffect(()=>{},[title])
   return (

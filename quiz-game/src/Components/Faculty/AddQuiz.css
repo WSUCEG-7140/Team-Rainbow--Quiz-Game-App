@@ -1,0 +1,29 @@
+.add-quiz-main{
+    display:flex;
+    margin:auto;
+    justify-content:center;
+    place-items:center;
+    flex-direction: column;
+}
+.quiz-name-input{
+    display:flex;
+    flex-direction: column;
+    gap:10px
+}
+.quiz-name-input input{
+    height:50px;
+    background:rgba(29, 29, 29, 0.5);
+    border:none;
+    border-radius: 25px;
+    padding:9px;
+    text-align: center;
+}
+
+.add-quiz-main button{
+    border-radius: 25px;
+    margin:10px;
+    padding-left:30px;
+    padding-right:30px;
+    background:rgba(29, 29, 29, 0.5);
+    border:none;
+}
