@@ -5,6 +5,7 @@
     width:80vw;
     margin:auto;
 }
+
 .MuiChartsAxis-tickLabel{
     color:red !important;
 }
