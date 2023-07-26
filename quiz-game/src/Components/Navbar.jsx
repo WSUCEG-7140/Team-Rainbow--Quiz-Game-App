@@ -29,7 +29,7 @@ const NavigationAuth = ({ userInfo }) => (
       <div className='navbar-container'>
         <p>Quiz App 🚀 🚀  </p>
         <ul>
-          <li><Link to={routes.HOME}>Home</Link></li>
+          <li><Link to={routes.FACULTY}>Home</Link></li>
           <li><Link to={routes.ACCOUNT}>Account</Link></li>
           <li><button onClick={auth.doSignOut} style={{background:'red'}}><text style={{ marginLeft: '15px', marginRight: '15px' }}>SignOut</text></button></li>
         </ul>

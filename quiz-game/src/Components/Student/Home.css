@@ -96,9 +96,11 @@
 .icon-main{
     filter:invert(1);
 }
+
 .icon-main:hover{
 filter:invert(1);
 }
+
 .dummy{
     width:50vw;
     height:20vw;
@@ -107,6 +109,7 @@ filter:invert(1);
     display:flex;
     justify-content: space-between;
 }
+
 .dummy-b{
     background: radial-gradient(  at left top,#ff9500,#ffd9009f );
     border-radius: 16px;
@@ -120,6 +123,7 @@ filter:invert(1);
     flex-direction: column;
     justify-content: flex-start;
 }
+
 .dummy-a {
     /* From https://css.glass */
     background: radial-gradient(  at left bottom,#ffd9009f, #ff9500 );
@@ -145,12 +149,15 @@ filter:invert(1);
     display:flex;
     justify-content: space-between;
 }
+
 .quizes-section:hover{
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
 }
+
 .quiz-completed{
     filter:invert(0.5);
 }
+
 .quiz-completed:hover{
     cursor: not-allowed !important;
     box-shadow: 0;

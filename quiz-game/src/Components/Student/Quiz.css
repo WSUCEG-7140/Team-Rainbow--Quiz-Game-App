@@ -40,8 +40,11 @@
 
 .completed{
     background:rgba(1, 1, 1, 0.5);
+    cursor:not-allowed !important;
 }
-
+.completed:hover{
+    cursor:not-allowed !important;
+}
 .current{
     background:rgba(0, 255, 42, 0.5);
     cursor:pointer;
@@ -51,9 +54,10 @@
 }
 
 .q-cont{
-    
+    display:flex;
     margin-left:12px;
     padding:10px;
+    flex-direction: column;
     /* From https://css.glass */
     background: rgba(0, 0, 0, 0.4);
     border-radius: 16px;

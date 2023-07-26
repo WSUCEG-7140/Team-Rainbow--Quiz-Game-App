@@ -4,10 +4,8 @@ import { Link } from 'react-router-dom';
 import { db, auth } from '../../firebase'
 import * as routes from '../../constants/routes'
 import './Home.css'
-import ProfilePic from '../../assets/profile.svg'
 import { Fade, Flip } from 'react-reveal'
 import QuizIcon from '@mui/icons-material/Quiz';
-import { pink } from '@mui/material/colors';
 
 function HomePage(props) {
   const [quizes, setQuizes] = useState([]);
@@ -25,8 +23,9 @@ function HomePage(props) {
   }
   }, [])
 
-  const updateStatus = (data,id) =>{
+  const updateStatus = (e,data,id) =>{
     db.doQuizStatusUpdate('pending',loggedUser.uid,id,0,data.max_mark,data.title)
+    
    }
   useEffect(() => { console.log(user) }, [quizes,user])
   return (
@@ -89,7 +88,7 @@ function HomePage(props) {
                       <div className="main-title"><h3>{i.data.title}</h3></div>
                       <div className="max-mark">max-mark: {i.data.max_mark}</div>
                     </div>
-                    <button disabled={i.data.disabled} className="take-quiz">{i.data.disabled==false?<Link to={{pathname:routes.QUIZ + i.id,query:{user_data:user,quiz_data:i.data}}} onClick={()=>updateStatus(i.data,i.id)} className='quiz-take-quiz'  style={{TextDecoration:'none',color:'inherit'}}>Take Quiz</Link >:<>Take Quiz</>}</button>
+                    <button disabled={i.data.disabled} className="take-quiz">{i.data.disabled==false?<Link to={{pathname:routes.QUIZ + i.id,query:{user_data:user,quiz_data:i.data}}} onClick={(e)=>updateStatus(e,i.data,i.id)} className='quiz-take-quiz'  style={{TextDecoration:'none',color:'inherit'}}>Take Quiz</Link >:<>Take Quiz</>}</button>
                   </div>
                      ))}
                 </div>
