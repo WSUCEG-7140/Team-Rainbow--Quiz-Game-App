@@ -20,8 +20,7 @@ To execute docs:
     ```jsdoc src -r -d docs```
 <br>
 
-![Alt text](<Embedded Doc.jpeg>
-
+![Alt text](<Embedded Doc.jpeg>)
 
 #  Quiz Game App - README
 
