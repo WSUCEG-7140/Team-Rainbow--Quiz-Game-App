@@ -45,6 +45,8 @@
 
 @anchor R85_0 R85_0 [Issue#85](https://github.com/WSUCEG-7140/Team-Rainbow--Quiz-Game-App/issues/85)
 
+@anchor R86_0 R86_0 [Issue#86](https://github.com/WSUCEG-7140/Team-Rainbow--Quiz-Game-App/pull/86)
+
 @anchor R80_0 R80_0 [Issue#80](https://github.com/WSUCEG-7140/Team-Rainbow--Quiz-Game-App/issues/80)
 
 @anchor R96_0 R96_0 [Issue#96](https://github.com/WSUCEG-7140/Team-Rainbow--Quiz-Game-App/pull/96)
