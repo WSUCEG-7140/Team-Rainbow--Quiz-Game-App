@@ -1,11 +1,14 @@
 // Import necessary dependencies and components
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { Button, Form, FormGroup, Label, Input, Alert } from "reactstrap";
+import { Alert, Button, Form, FormGroup, Input, Label } from "reactstrap";
 
-import { auth } from "../firebase";
 import * as routes from "../constants/routes";
+import { auth } from "../firebase";
+// @ref R48_0
 
+//This Component is part of the @ref Model within the overall @ref ModelViewController model.
+//This Component implements the methods related to password changes by the user.
 
 /** PasswordForgetPage component allows users to reset their password, whether they are authenticated or not. It renders a form to request a password reset. */
 const PasswordForgetPage = () => (
