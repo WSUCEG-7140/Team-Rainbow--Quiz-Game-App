@@ -29,6 +29,12 @@ const CustomTextField = styled((props) => (
     },
 }));
 
+/**
+ * Edit Quiz Component: Allows Faculty to edit existing quiz.
+ * @param {*} qid(Quiz ID)
+ * @returns UI for rendering an "Edit Quiz" component
+ * 
+ */
 function EditQuiz({ qid }) {
     // State variables to manage the quiz questions and selected question
     const [qCount, setQcount] = useState(1);
