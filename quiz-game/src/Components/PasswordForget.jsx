@@ -1,3 +1,4 @@
+// Import necessary dependencies and components
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Button, Form, FormGroup, Label, Input, Alert } from "reactstrap";
@@ -5,7 +6,8 @@ import { Button, Form, FormGroup, Label, Input, Alert } from "reactstrap";
 import { auth } from "../firebase";
 import * as routes from "../constants/routes";
 
-//it resets your password. It doesn’t matter if you are authenticated or not
+
+/** PasswordForgetPage component allows users to reset their password, whether they are authenticated or not. It renders a form to request a password reset. */
 const PasswordForgetPage = () => (
   <div className="div-flex" style={{maxWidth:'750px',margin:'auto'}}>
     <div>
@@ -15,36 +17,42 @@ const PasswordForgetPage = () => (
   </div>
 );
 
+// Helper function to update state properties
 const byPropKey = (propertyName, value) => () => ({
   [propertyName]: value
 });
 
-//################### PasswordForget Form ###################
+// Initial state for the PasswordForgetForm component
 const INITIAL_STATE = {
   email: "",
   error: null,
   showingAlert: false
 };
 
+// PasswordForgetForm component allows users to enter their email and request a password reset.
 class PasswordForgetForm extends Component {
   state = { ...INITIAL_STATE };
 
+  // Function to handle the form submission
   onSubmit = event => {
+    event.preventDefault();
     const { email } = this.state;
 
+    // Call the doPasswordReset method from Firebase's auth object to request a password reset
     auth
       .doPasswordReset(email)
       .then(() => {
+        // If the password reset request is successful, reset the form
         this.setState({ ...INITIAL_STATE });
       })
       .catch(error => {
+        // If there's an error during the password reset request, set the error in the state and show an alert message for a few seconds
         this.setState(byPropKey("error", error));
-        this.timer(); //show alert message for some seconds
+        this.timer();
       });
-
-    event.preventDefault();
   };
 
+  // Function to show the alert message for a few seconds
   timer = () => {
     this.setState({
       showingAlert: true
@@ -58,18 +66,22 @@ class PasswordForgetForm extends Component {
   };
 
   render() {
+    // Destructure state properties for easy access
     const { email, error, showingAlert } = this.state;
 
+    // Check if the email is empty, which is used to disable the submit button
     const isInvalid = email === "";
 
     return (
       <div>
+        {/* Render the alert message if there's an error */}
         {showingAlert && (
           <Alert color="danger" onLoad={this.timer}>
             {error.message}
           </Alert>
         )}
 
+        {/* Password forget form */}
         <Form onSubmit={this.onSubmit}>
           <FormGroup>
             <Label for="exampleEmail">Email</Label>
@@ -87,6 +99,7 @@ class PasswordForgetForm extends Component {
           </FormGroup>
 
           <div className="text-center">
+            {/* Disable the button if the email is empty */}
             <Button disabled={isInvalid} style={{borderRadius:'15px'}} type="submit">
               Reset My Password
             </Button>
@@ -97,7 +110,7 @@ class PasswordForgetForm extends Component {
   }
 }
 
-//################### PasswordForget Link ###################
+// PasswordForgetLink component provides a link to the password forget page.
 const PasswordForgetLink = () => (
   <p>
     <Link to={routes.PASSWORD_FORGET}>Forgot Password?</Link>
@@ -105,21 +118,4 @@ const PasswordForgetLink = () => (
 );
 
 export default PasswordForgetPage;
-
 export { PasswordForgetForm, PasswordForgetLink };
-
-// <form onSubmit={this.onSubmit}>
-//   <input
-//     value={this.state.email}
-//     onChange={event =>
-//       this.setState(byPropKey("email", event.target.value))
-//     }
-//     type="text"
-//     placeholder="Email Address"
-//   />
-//   <button disabled={isInvalid} type="submit">
-//     Reset My Password
-//   </button>
-
-//   {error && <p>{error.message}</p>}
-// </form>

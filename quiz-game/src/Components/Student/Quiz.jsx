@@ -7,6 +7,12 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import { Prompt } from 'react-router'
 
+/**
+ * Shuffle functionality 
+ * @param {*} array :array of elements that you want to shuffle
+ * @returns shuffled version of the input array
+ * 
+ */
 function shuffle(array) {
     let currentIndex = array?.length == undefined ? 0 : array.length, randomIndex;
 
@@ -24,7 +30,11 @@ function shuffle(array) {
 
     return array;
 }
-
+/**
+ * Quiz Functionality
+ * @param {*} props : contains information about logged-in user information, qid and quiz information about such as the title, max marks, etc.
+ * @returns UI for the quiz page, which allows the user to take the quiz
+ */
 function Quiz(props) {
     
     const quiz_data = props.location.query.quiz_data

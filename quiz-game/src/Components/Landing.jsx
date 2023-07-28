@@ -2,7 +2,11 @@ import React from 'react'
 import './Landing.css'
 import Zoom from 'react-reveal/Zoom';
 import Fade from 'react-reveal/Fade';
-
+/**
+ * Landing page is the Home page that occurs before the user login
+ * @returns displays simple interface of quiz react app
+ * 
+ */
 function LandingPage() {
     return (
         <div className='landing-container' >

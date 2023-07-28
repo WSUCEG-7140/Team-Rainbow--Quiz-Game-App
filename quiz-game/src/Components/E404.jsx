@@ -3,6 +3,11 @@ import { Zoom } from 'react-reveal'
 import Flash from 'react-reveal/Flash'
 import { Link } from 'react-router-dom'
 import './E404.css'
+/**
+ * E404 Component: Displaying error message if exceptions are encountered
+ * @returns JSX code that represents the custom 404 error page
+ * 
+ */
 function E404() {
   return (
     <Zoom>

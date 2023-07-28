@@ -7,7 +7,10 @@ import * as routes from "../constants/routes";
 import { auth } from '../firebase'
 import AuthUserContext from "./AuthUserContext";
 
-
+/**
+ * NavigationNonAuth functionality
+ * @returns JSX code that represents the navigation bar UI for non-authenticated users
+ */
 const NavigationNonAuth = () => (
   <Fade top>
     <div className='navbar-container'>
@@ -21,6 +24,14 @@ const NavigationNonAuth = () => (
   </Fade>
 );
 
+
+/**
+ * 
+ * NavigationAuth functionality
+ * @param {*} param1: an object representing the user information that have property called role to indicate whther a user or faculty.
+ * @returns JSX code that represents the navigation bar UI for authenticated users based on their role
+ * 
+ */
 const NavigationAuth = ({ userInfo }) => (
 
   <div style={{ paddingTop: '15px' }}>
@@ -51,7 +62,10 @@ const NavigationAuth = ({ userInfo }) => (
 
   </div>
 );
-
+/**
+ * Navbar Component
+ * @returns JSX code that represents the navigation bar UI for authenticated users based on their role
+ */
 const Navbar = () => (
   <AuthUserContext.Consumer>
     {authUser =>

@@ -8,7 +8,13 @@ import ProfilePic from '../../assets/profile.svg'
 import { Fade, Flip } from 'react-reveal'
 import QuizIcon from '@mui/icons-material/Quiz';
 import { pink } from '@mui/material/colors';
-
+/**
+ * Student Home Page Component
+ * @param {*} props 
+loggedUser: This prop represents the currently logged-in user and contains user-related information, such as displayName, emailVerified, and uid.
+ * @returns JSX, which includes various elements, such as user profile details, active quizzes, quiz scores, and a button to verify the user's email.
+ *
+ */
 function HomePage(props) {
   const [quizes, setQuizes] = useState([]);
   const [user,setUser] = useState([])

@@ -1,12 +1,15 @@
+// Import necessary dependencies and components
 import React, { Component } from "react";
 import { Button, Form, FormGroup, Label, Input, Alert } from "reactstrap";
 
 import { auth } from "../firebase";
 
+// Helper function to update state properties
 const byPropKey = (propertyName, value) => () => ({
   [propertyName]: value
 });
 
+// Initial state for the component
 const INITIAL_STATE = {
   passwordOne: "",
   passwordTwo: "",
@@ -14,25 +17,33 @@ const INITIAL_STATE = {
   showingAlert: false
 };
 
+/**
+ * PasswordChangeForm is a class component that contains a form to change the password.
+ */
 class PasswordChangeForm extends Component {
   state = { ...INITIAL_STATE };
 
+  // Function to handle the form submission
   onSubmit = event => {
+    event.preventDefault();
     const { passwordOne } = this.state;
+
+    // Call the doPasswordChange method from the auth object provided by Firebase
     auth
       .doPasswordChange(passwordOne)
       .then(() => {
+        // If the password change is successful, reset the form and show a success message
         this.setState({ ...INITIAL_STATE });
         console.log('Password Change Success!🎫 ')
       })
       .catch(error => {
+        // If there's an error during password change, set the error in the state and show an alert message for a few seconds
         this.setState(byPropKey("error", error));
-        this.timer(); //show alert message for some seconds
+        this.timer();
       });
-
-    event.preventDefault();
   };
 
+  // Function to show the alert message for a few seconds
   timer = () => {
     this.setState({
       showingAlert: true
@@ -46,19 +57,23 @@ class PasswordChangeForm extends Component {
   };
 
   render() {
+    // Destructure state properties for easy access
     const { passwordOne, passwordTwo, error, showingAlert } = this.state;
 
+    // Check if the form is invalid (passwords do not match or passwordOne is empty)
     const isInvalid = passwordOne !== passwordTwo || passwordOne === "";
 
     return (
       <div style={{ marginTop: "40px" }}>
+        {/* Render the alert message if there's an error */}
         {showingAlert && (
           <Alert color="danger" onLoad={this.timer}>
             {error.message}
           </Alert>
         )}
 
-        <Form >
+        {/* Password change form */}
+        <Form>
           <FormGroup>
             <Label for="examplePassword1">New Password</Label>
             <Input
@@ -67,7 +82,7 @@ class PasswordChangeForm extends Component {
               id="examplePassword1"
               placeholder="New Password"
               value={passwordOne}
-              style={{borderRadius:'20px',backgroundFilter:'blur(5px)',color:'white',background:'#e1ffe11a'}}
+              style={{ borderRadius: '20px', backgroundFilter: 'blur(5px)', color: 'white', background: '#e1ffe11a' }}
               onChange={e =>
                 this.setState(byPropKey("passwordOne", e.target.value))
               }
@@ -81,7 +96,7 @@ class PasswordChangeForm extends Component {
               id="examplePassword2"
               placeholder="Confirm Password"
               value={passwordTwo}
-              style={{borderRadius:'20px',backgroundFilter:'blur(5px)',color:'white',background:'#e1ffe11a'}}
+              style={{ borderRadius: '20px', backgroundFilter: 'blur(5px)', color: 'white', background: '#e1ffe11a' }}
               onChange={e =>
                 this.setState(byPropKey("passwordTwo", e.target.value))
               }
@@ -89,7 +104,8 @@ class PasswordChangeForm extends Component {
           </FormGroup>
 
           <div className="text-center">
-            <Button disabled={isInvalid} style={{borderRadius:'15px'}} onClick={this.onSubmit}>
+            {/* Disable the button if the form is invalid */}
+            <Button disabled={isInvalid} style={{ borderRadius: '15px' }} onClick={this.onSubmit}>
               Change My Password
             </Button>
           </div>
@@ -100,27 +116,3 @@ class PasswordChangeForm extends Component {
 }
 
 export default PasswordChangeForm;
-
-// <form onSubmit={this.onSubmit}>
-//   <input
-//     value={passwordOne}
-//     onChange={event =>
-//       this.setState(byPropKey("passwordOne", event.target.value))
-//     }
-//     type="password"
-//     placeholder="New Password"
-//   />
-//   <input
-//     value={passwordTwo}
-//     onChange={event =>
-//       this.setState(byPropKey("passwordTwo", event.target.value))
-//     }
-//     type="password"
-//     placeholder="Confirm New Password"
-//   />
-//   <button disabled={isInvalid} type="submit">
-//     Change My Password
-//   </button>
-
-//   {error && <p>{error.message}</p>}
-// </form>
