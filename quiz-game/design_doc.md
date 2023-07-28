@@ -1,39 +1,41 @@
-Design
+# Design
+
 This design documents shows how the Rainbow-Team's Quiz game App project implements the following @ref Requirements.
 
 @section Project Project Overview
 
 Quiz game App developed using React vite and firebase. This system helps allow users to practice quizes.
 
-Features
-Authentication: Allows user to sign up sign in and sign out.
-Quiz practice: allows users to access list of quizzes to practice that are made available by the admin.
-Admin : Allows to add, edit, delete and disable quizzes.
-Reporting: displays results after completion of each quiz.
+# Features
+1.	Authentication: Allows user to sign up sign in and sign out.
+2.	Quiz practice: allows users to access list of quizzes to practice that are made available by the admin.
+3.	Admin : Allows to add, edit, delete and disable quizzes.
+4.	Reporting: displays results after completion of each quiz.
+
 @section ModelViewController Model View Controller
 
-This design applies the Model View Controller Design Pattern.
+This design applies the [Model View Controller](https://en.wikipedia.org/wiki/Model–view–controller) Design Pattern.
 
-Model
+## Model
+
 The Model consists of the following components:
 
-@anchor R33_0 hquiz-game/src/Components/Student/Question.jsx
-@anchor R33_0 quiz-game/src/Components/Student/Quiz.jsx
-@anchor R33_0 quiz-game/src/Components/Student/Home.jsx
+@anchor R33_0 https://github.com/WSUCEG-7140/Team-Rainbow--Quiz-Game-App/blob/main/quiz-game/src/Components/Student/Question.jsx
+@anchor R33_0 https://github.com/WSUCEG-7140/Team-Rainbow--Quiz-Game-App/blob/main/quiz-game/src/Components/Student/Quiz.jsx
+@anchor R33_0 https://github.com/WSUCEG-7140/Team-Rainbow--Quiz-Game-App/blob/main/quiz-game/src/Components/Student/Quiz.jsx
 
-View
+## View
+<br>
+<br>
 
+## Controller
 
-Controller
 The Controller consists of the following component:
 
-@anchor R54_0 quiz-game/src/Components/Faculty/FacultyHome.jsx
-@anchor R22_0 quiz-game/src/Components/Faculty/EditQuiz.jsx
-@anchor R80_0 quiz-game/src/Components/Faculty/AddQuiz.jsx
-@anchor R86_0 quiz-game/src/Components/Faculty/FacultyHome.jsx
-
-										
-
+@anchor R54_0 https://github.com/WSUCEG-7140/Team-Rainbow--Quiz-Game-App/blob/main/quiz-game/src/Components/Faculty/FacultyHome.jsx
+@anchor R22_0 https://github.com/WSUCEG-7140/Team-Rainbow--Quiz-Game-App/blob/main/quiz-game/src/Components/Faculty/EditQuiz.jsx
+@anchor R80_0 https://github.com/WSUCEG-7140/Team-Rainbow--Quiz-Game-App/blob/main/quiz-game/src/Components/Faculty/AddQuiz.jsx
+@anchor R86_0 https://github.com/WSUCEG-7140/Team-Rainbow--Quiz-Game-App/blob/main/quiz-game/src/Components/Faculty/FacultyHome.jsx
 
 
 ## App.jsx
