@@ -16,8 +16,8 @@ import EditQuiz from './EditQuiz';
 import { Fade } from 'react-reveal';
 
 
-// @ref R54_0
-// @ref R86_0
+// @ref R54_0, R22_0, R80_0, R86_0
+
 //This Component is part of the @ref Model within the overall @ref ModelViewController controller.
 //This Component implements the methods related to faculty features.
 
@@ -76,7 +76,7 @@ const IOSSwitch = styled((props) => (
 }));
 
 /**
- *  FacultyHome Component
+ *  FacultyHome Component: It allows admin to add, delete, edit, and enable/disable quizzes along with resultant graph
  *  
  * @returns  All quizes, Add Quiz button,Edit & delete buttons. disable quiz and result graph for corresponding quizzes.
  */
@@ -89,6 +89,7 @@ function FacultyHome() {
   const [EditQuizModal,setEditQuizModal] = useState(false)
 
   // Function to update the quiz status (enable/disable)
+  {/**@ref R54_0 */}
   const doUpdate =(id,status)=>{
     console.log(activeQuiz)
     let data = activeQuiz.data
@@ -140,7 +141,8 @@ function FacultyHome() {
             <button onClick={()=>{setAddQuizModal(false)}} > X </button>
             <AddQuiz setIsOpen={(e)=>{setAddQuizModal(e)}} />
           </ReactModal>
-           {/* Modal for editing a quiz */}
+           {/** Modal for editing a quiz. @ref R22_0 */ }
+          
           <ReactModal
           isOpen={EditQuizModal}
           contentLabel="Example Modal"
@@ -164,7 +166,7 @@ function FacultyHome() {
                 <div style={{ display: 'flex' }}>
                   {/* Button to edit the quiz */}
                   <button className="take-quiz" onClick={()=>{setEditQuizModal(true)}}>Edit <AppRegistrationIcon /></button>
-                  {/* Button to delete the quiz */}
+                  {/* Button to delete the quiz.@ref R_86_0 */}
                   <button className="take-quiz" onClick={(e)=>{confirm('Do you want to delete the Quiz?')?db.doDelteQuiz(i.id):''}} >Delete <DeleteForeverIcon/></button>
                 </div>
               </div>
@@ -190,7 +192,7 @@ function FacultyHome() {
             <h5 style={{ margin: 'auto' }}>Attempts : {quizAttempts.length}</h5>
           </li>
         </ul>
-        
+
         {/* Component for displaying the result graph of the active quiz */}
            
         <div className="faculty-quiz-results">
