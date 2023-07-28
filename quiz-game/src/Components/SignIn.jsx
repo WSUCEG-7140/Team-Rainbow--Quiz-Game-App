@@ -1,12 +1,17 @@
 import React, { Component } from "react";
-import { Button, Form, FormGroup, Label, Input, Alert } from "reactstrap";
-import { SignUpLink } from "./SignUp";
+import Zoom from 'react-reveal';
 import { withRouter } from "react-router-dom";
-import Zoom from 'react-reveal'
-import { PasswordForgetLink } from "./PasswordForget";
-import { auth, db } from "../firebase";
+import { Alert, Button, Form, FormGroup, Input, Label } from "reactstrap";
 import * as routes from "../constants/routes";
-import './SignIn.css'
+import { auth, db } from "../firebase";
+import { PasswordForgetLink } from "./PasswordForget";
+import './SignIn.css';
+import { SignUpLink } from "./SignUp";
+
+// @ref R43_0
+
+//This Component is part of the @ref Model within the overall @ref ModelViewController model.
+//This Component implements the methods related to sign_in by the user.
 /**
  * 
  * @param {*} history : a component from router that allows to access browser history 

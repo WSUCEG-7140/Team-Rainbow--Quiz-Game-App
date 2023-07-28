@@ -1,8 +1,15 @@
 import React from 'react'
-import {Link } from 'react-router-dom'
-import  Flash from 'react-reveal/Flash'
-import './E404.css'
 import { Zoom } from 'react-reveal'
+import Flash from 'react-reveal/Flash'
+import { Link } from 'react-router-dom'
+import './E404.css'
+
+// @ref R33_0
+
+//This Component is part of the @ref Model within the overall @ref ModelViewController model.
+//This Component implements the methods related to displaying an message to the user.
+
+
 /**
  * E404 Component: Displaying error message if exceptions are encountered
  * @returns JSX code that represents the custom 404 error page

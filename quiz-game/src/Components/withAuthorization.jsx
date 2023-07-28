@@ -1,9 +1,13 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 
-import AuthUserContext from "./AuthUserContext";
-import { firebase } from "../firebase";
 import * as routes from "../constants/routes";
+import { firebase } from "../firebase";
+import AuthUserContext from "./AuthUserContext";
+// @ref R35_0 , R39_0
+
+//This Component is part of the @ref Model within the overall @ref ModelViewController model.
+//This Component implements the methods related to authorization of the user.
 
 const withAuthorization = authCondition => Component => {
   class WithAuthorization extends React.Component {

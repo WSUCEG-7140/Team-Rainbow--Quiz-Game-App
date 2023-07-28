@@ -1,11 +1,16 @@
-import React, { useEffect, useState } from 'react'
-import withAuthorization from "../withAuthorization";
-import { Link } from 'react-router-dom';
-import { db, auth } from '../../firebase'
-import * as routes from '../../constants/routes'
-import './Home.css'
-import { Fade, Flip } from 'react-reveal'
 import QuizIcon from '@mui/icons-material/Quiz';
+import React, { useEffect, useState } from 'react';
+import { Fade, Flip } from 'react-reveal';
+import { Link } from 'react-router-dom';
+import * as routes from '../../constants/routes';
+import { auth, db } from '../../firebase';
+import withAuthorization from "../withAuthorization";
+import './Home.css';
+// @ref R33_0
+
+//This Component is part of the @ref Model within the overall @ref ModelViewController model.
+//This Component implements the methods related to view home features to the user.
+
 /**
  * Student Home Page Component
  * @param {*} props 

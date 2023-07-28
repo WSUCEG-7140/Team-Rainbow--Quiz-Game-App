@@ -1,7 +1,9 @@
-import React from 'react'
-import { CChart } from '@coreui/react-chartjs'
-import { useEffect, useState } from 'react'
+import { CChart } from '@coreui/react-chartjs';
+import React, { useEffect, useState } from 'react';
+// @ref R57_0
 
+//This Component is part of the @ref Model within the overall @ref ModelViewController controller.
+//This Component implements the methods related to results of the quiz of the user.
 /**
  * 
  * @param {*} arr an array of elements for which you want to group duplicates and count their occurrences.

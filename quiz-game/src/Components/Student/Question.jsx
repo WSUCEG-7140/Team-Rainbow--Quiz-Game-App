@@ -1,4 +1,10 @@
 import React from 'react'
+
+//@ref R35_0
+
+//This Component is part of the @ref Model within the overall @ref ModelViewController model.
+//This Component implements the methods related to view questions  to the user.
+
 /**
  * Question Component
  * @param {*} a string containing the text of the question 

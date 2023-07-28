@@ -1,11 +1,15 @@
-import React from 'react'
-import './Navbar.css'
+import React from 'react';
 import Fade from 'react-reveal/Fade';
 import { Link } from "react-router-dom";
-import SignOutButton from "./SignOut";
 import * as routes from "../constants/routes";
-import { auth } from '../firebase'
+import { auth } from '../firebase';
 import AuthUserContext from "./AuthUserContext";
+import './Navbar.css';
+
+// @ref R47_0
+
+//This Component is part of the @ref Model within the overall @ref ModelViewController model.
+//This Component implements the methods related to navigation .
 
 /**
  * NavigationNonAuth functionality
