@@ -1,3 +1,16 @@
+Team members:
+
+1) Siri Chandana Sirigiri : @siri0314
+2) Sushmitha Kishor       : @sushmithakishor23
+3) Shirini                : @Shirini4
+4) Harsha Vardhan Bojanki : @Harsha Bojanki
+5) Teja Mummana           : @MummanaTeja
+6) Sravya Kavuru          : @sravyakavuru4
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

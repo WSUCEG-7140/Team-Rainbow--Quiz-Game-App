@@ -1,18 +1,26 @@
-import React from 'react'
-import './EditQuiz.css'
-import { db } from '../../firebase'
-import { Button as Butto } from '@mui/material'
-import { useState } from 'react'
+// Import necessary modules and components
+import React from 'react';
+import './EditQuiz.css';
+import { db } from '../../firebase';
+import { Button as Butto } from '@mui/material';
+import { useState } from 'react';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import TextField from '@mui/material/TextField';
-import { useEffect } from 'react'
+import { useEffect } from 'react';
 import { styled } from '@mui/material/styles';
 import SaveAsIcon from '@mui/icons-material/SaveAs';
 import isEqual from 'lodash.isequal';
-import { Zoom } from 'react-reveal'
+import { Zoom } from 'react-reveal';
+
+// @ref R22_0
+
+//This Component is part of the @ref Model within the overall @ref ModelViewController controller.
+//This Component implements the methods related to faculty features.
+
+// Custom styled TextField component to disable underline
 const CustomTextField = styled((props) => (
     <TextField InputProps={{ disableUnderline: true }} {...props} />
 ))(({ theme }) => ({
@@ -21,13 +29,19 @@ const CustomTextField = styled((props) => (
     },
 }));
 
+/**
+ * Edit Quiz Component: Allows Faculty to edit existing quiz.
+ * @param {*} qid(Quiz ID)
+ * @returns UI for rendering an "Edit Quiz" component
+ * 
+ */
 function EditQuiz({ qid }) {
-
-    const [qCount, setQcount] = useState(1)
-    const [indexer, setIndexer] = useState(0)
-    const [value, setValue] = useState(0)
-    const [totalQuestions, setTotalQuestions] = useState([])
-    const [changed, setChanged] = useState(false)
+    // State variables to manage the quiz questions and selected question
+    const [qCount, setQcount] = useState(1);
+    const [indexer, setIndexer] = useState(0);
+    const [value, setValue] = useState(0);
+    const [totalQuestions, setTotalQuestions] = useState([]);
+    const [changed, setChanged] = useState(false);
     const [currentQ, setCurrentQ] = useState({
         'id': '',
         'question': '',
@@ -37,15 +51,19 @@ function EditQuiz({ qid }) {
         'option4': '',
         'answer': '',
         'point': 0,
-    })
-    let unsubscribe = ''
+    });
+
+    // Firebase snapshot listener to fetch the quiz questions from the database
+    let unsubscribe = '';
     useEffect(() => {
         unsubscribe = db.doTotalQuizesData().doc(qid).collection('Questions').onSnapshot(
             (snapshot) => {
-                setTotalQuestions(snapshot.docs.map((doc) => ({ id: doc.id, data: doc.data() })))
+                setTotalQuestions(snapshot.docs.map((doc) => ({ id: doc.id, data: doc.data() })));
             }
-        )
-    }, [])
+        );
+    }, []);
+
+    // Function to create an empty question for the quiz
     const CreateEmptyQuestion = () => {
         db.doNewQuizQuestions(qid, {
             question: '',
@@ -54,12 +72,13 @@ function EditQuiz({ qid }) {
             answer: ''
         }).then(() => {
             setValue(currentQ);
-
         }).catch((error) => {
             console.log(error);
             alert("Error removing Quiz: ", error);
         });
     };
+
+    // Function to update the current question in the database
     const updateQuestion = () => {
         db.doUpdateQuizQuestions(qid, currentQ.id, {
             question: currentQ?.question,
@@ -68,12 +87,13 @@ function EditQuiz({ qid }) {
             answer: currentQ?.answer
         }).then(() => {
             setValue(currentQ);
-
         }).catch((error) => {
             console.log(error);
             alert("Error removing Quiz: ", error);
         });
     };
+
+    // Function to search for a question in the totalQuestions array by id
     function search(nameKey, myArray) {
         for (let i = 0; i < myArray.length; i++) {
             if (myArray[i].id === nameKey) {
@@ -82,69 +102,69 @@ function EditQuiz({ qid }) {
         }
     }
 
-    useEffect(() => { console.log(totalQuestions); setChanged(!isEqual(currentQ, value)); }, [totalQuestions])
+    // useEffect hooks to monitor changes in totalQuestions, indexer, currentQ, and value
+    useEffect(() => { console.log(totalQuestions); setChanged(!isEqual(currentQ, value)); }, [totalQuestions]);
     useEffect(() => {
-        let res = search(indexer, totalQuestions)
-        setCurrentQ(
-            {
-                'id': res?.id,
-                'question': res?.data?.question,
-                'option1': res?.data?.options[0],
-                'option2': res?.data?.options[1],
-                'option3': res?.data?.options[2],
-                'option4': res?.data?.options[3],
-                'answer': res?.data?.answer,
-                'point': res?.data?.point
-            }
-        );
-        setValue(
-            {
-                'id': res?.id,
-                'question': res?.data?.question,
-                'option1': res?.data?.options[0],
-                'option2': res?.data?.options[1],
-                'option3': res?.data?.options[2],
-                'option4': res?.data?.options[3],
-                'answer': res?.data?.answer,
-                'point': res?.data?.point
-            }
-        )
+        let res = search(indexer, totalQuestions);
+        setCurrentQ({
+            'id': res?.id,
+            'question': res?.data?.question,
+            'option1': res?.data?.options[0],
+            'option2': res?.data?.options[1],
+            'option3': res?.data?.options[2],
+            'option4': res?.data?.options[3],
+            'answer': res?.data?.answer,
+            'point': res?.data?.point
+        });
+        setValue({
+            'id': res?.id,
+            'question': res?.data?.question,
+            'option1': res?.data?.options[0],
+            'option2': res?.data?.options[1],
+            'option3': res?.data?.options[2],
+            'option4': res?.data?.options[3],
+            'answer': res?.data?.answer,
+            'point': res?.data?.point
+        });
         setChanged(!isEqual(currentQ, value));
-    }, [indexer])
+    }, [indexer]);
     useEffect(() => {
         console.log(currentQ, value);
-        console.log(!isEqual(currentQ, value))
+        console.log(!isEqual(currentQ, value));
         setChanged(!isEqual(currentQ, value));
-    }, [currentQ])
-    useEffect(() => { setChanged(!isEqual(currentQ, value)); }, [value])
+    }, [currentQ]);
+    useEffect(() => { setChanged(!isEqual(currentQ, value)); }, [value]);
 
+    // Function to validate and change the selected question index
     const validate = (id) => {
         if (changed) {
-            if (confirm('You have not saved your changes!, Do you want to move to other question?') == true)
-                setIndexer(id)
+            if (confirm('You have not saved your changes! Do you want to move to another question?') == true)
+                setIndexer(id);
         }
         else {
-            setIndexer(id)
+            setIndexer(id);
         }
-    }
+    };
 
+    // Function to delete the current question
     const DeleteQuestion = () => {
         if (confirm('Do you really want to delete this question?') == true)
-            db.doDeleteQuestion(qid, currentQ.id).then(() => { alert('Question deleted succesfully!'); setIndexer(totalQuestions[0].id) })
-    }
+            db.doDeleteQuestion(qid, currentQ.id).then(() => { alert('Question deleted successfully!'); setIndexer(totalQuestions[0].id); });
+    };
 
+    // JSX code for rendering the EditQuiz component UI
     return (
         <div className='edit-quiz-main'>
             <Zoom duration={500}>
                 <div className="questions-edit-quiz q-no">
                     Questions:
                     <ul>
+                        {/* Display the list of questions with a click event to select a question */}
                         {totalQuestions.map((x, i) =>
                             <Zoom bottom delay={500}>
-                                <li disabled className={'option ' + (changed ? ' completed' : '')} value={x.id} onClick={() => { validate(x.id) }} >{i + 1}</li></Zoom>
+                                <li disabled className={'option ' + (changed ? ' completed' : '')} value={x.id} onClick={() => { validate(x.id); }} >{i + 1}</li></Zoom>
                         )}
                     </ul>
-                    {/* <Button className='add-q'  >Add a question</Button> */}
                 </div>
             </Zoom>
             <Zoom duration={500}>
@@ -153,13 +173,15 @@ function EditQuiz({ qid }) {
                         <div className='question' >
                             Indexer - {indexer}
                             <h2>Question : </h2>
-                            <textarea style={{ width: '100%', height: '100px' }} className='add-q-input' placeholder='Write your question here...' value={currentQ?.question} onChange={(e) => { setCurrentQ({ ...currentQ, question: e.target.value }) }} ></textarea>
+                            {/* Input field to enter the question */}
+                            <textarea style={{ width: '100%', height: '100px' }} className='add-q-input' placeholder='Write your question here...' value={currentQ?.question} onChange={(e) => { setCurrentQ({ ...currentQ, question: e.target.value }); }} ></textarea>
                         </div>
                         <div className='options'>
                             <RadioGroup
                                 aria-labelledby="demo-error-radios"
                                 name="quiz"
                                 value={currentQ?.answer}
+                                
                                 onChange={(e) => { setCurrentQ({ ...currentQ, answer: e.target.value }) }}
                                 style={{ width: '100%', marginLeft: '100px' }}
                             >

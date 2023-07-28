@@ -7,10 +7,23 @@ import * as routes from '../../constants/routes'
 import './FacultyHome.css'
 import { styled } from '@mui/material/styles';
 import Switch from '@mui/material/Switch';
+import ResultGraph from './ResultGraph';
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import ReactModal from 'react-modal';
+import AddQuiz from './AddQuiz';
+import EditQuiz from './EditQuiz';
 import { Fade } from 'react-reveal';
 
+
+// @ref R54_0, R22_0, R80_0, R86_0
+
+//This Component is part of the @ref Model within the overall @ref ModelViewController controller.
+//This Component implements the methods related to faculty features.
+
+
+
+// Styling for the custom switch component
 const IOSSwitch = styled((props) => (
   <Switch focusVisibleClassName=".Mui-focusVisible" disableRipple {...props} />
 ))(({ theme }) => ({
@@ -62,14 +75,23 @@ const IOSSwitch = styled((props) => (
   },
 }));
 
+/**
+ *  
+ *FacultyHome Component: It allows admin to add, delete, edit, and enable/disable quizzes along with resultant graph
+ *  
+ * @returns  All quizes, Add Quiz button,Edit & delete buttons. disable quiz and result graph for corresponding quizzes.
+ *
+ */
 function FacultyHome() {
-
+  // State variables to manage data and modals
   const [quizData, setQuizData] = useState([])
   const [activeQuiz, setActiveQuiz] = useState()
   const [quizAttempts, setQuizAttempts] = useState([])
   const [addQuizModal,setAddQuizModal] = useState(false)
   const [EditQuizModal,setEditQuizModal] = useState(false)
 
+  // Function to update the quiz status (enable/disable)
+  {/**@ref R54_0 */}
   const doUpdate =(id,status)=>{
     console.log(activeQuiz)
     let data = activeQuiz.data
@@ -78,6 +100,8 @@ function FacultyHome() {
       console.log(data)
     setActiveQuiz({...activeQuiz, data: data})})
   }
+
+  // Fetch all quiz data on component mount
   useEffect(() => {
     db.doTotalQuizesData().onSnapshot((snapshot) => {
       setQuizData(snapshot.docs.map((doc) => ({ id: doc.id, data: doc.data() })))
@@ -85,7 +109,10 @@ function FacultyHome() {
   }
     , [])
 
+     // Log the quizData whenever it changes
   useEffect(() => { console.log(quizData) }, [quizData])
+
+   // Fetch quiz attempts data for the currently active quiz
   useEffect(() => {
     console.log('Active Quiz Object: ', activeQuiz); 
     db.doGetQuizAttemps(activeQuiz?.id).then((snapshot) => {
@@ -93,15 +120,42 @@ function FacultyHome() {
     })
   }, [activeQuiz])
 
+// JSX code for rendering the faculty home page UI
   return (
     <div className="faculty-home">
       <Fade left>
       <div className="faculty-quizes">
+        {/* Section for displaying all quizzes */}
         <div className='faculty-quiz-heading'>
           <h1>All Quizes </h1>
         </div>
-        
-        
+        <div className="add-quiz-faculty">
+          {/* Button to add a new quiz */}
+          <h3 style={{ textDecoration: 'none' }} onClick={()=>{setAddQuizModal(true)}} >Add Quiz <AddCardIcon style={{ fontSize: 'inherit' }} /></h3>
+           {/* Modal for adding a new quiz */}
+          <ReactModal
+          isOpen={addQuizModal}
+          contentLabel="Example Modal"
+          onRequestClose={()=>setAddQuizModal(false)}
+          className='add-quiz-modal'
+          overlayClassName="add-quiz-modal-overlay"
+          >
+            <button onClick={()=>{setAddQuizModal(false)}} > X </button>
+            <AddQuiz setIsOpen={(e)=>{setAddQuizModal(e)}} />
+          </ReactModal>
+           {/** Modal for editing a quiz. @ref R22_0 */ }
+          
+          <ReactModal
+          isOpen={EditQuizModal}
+          contentLabel="Example Modal"
+          className='add-quiz-modal'
+          overlayClassName="add-quiz-modal-overlay"
+          >
+            <button onClick={()=>{setEditQuizModal(false)}} > X </button>
+            <EditQuiz qid={activeQuiz?.id} setIsOpen={(e)=>{setEditQuizModal(e)}} />
+          </ReactModal>
+        </div>
+         {/* Section for displaying the list of quizzes */}
         <div className="faculty-quiz-set "  >
           {
             quizData.map((i,index) => (
@@ -112,7 +166,9 @@ function FacultyHome() {
                   <div className="max-mark">max-mark: {i.data['max_mark']}</div>
                 </div>
                 <div style={{ display: 'flex' }}>
+                  {/* Button to edit the quiz */}
                   <button className="take-quiz" onClick={()=>{setEditQuizModal(true)}}>Edit <AppRegistrationIcon /></button>
+                  {/* Button to delete the quiz.@ref R_86_0 */}
                   <button className="take-quiz" onClick={(e)=>{confirm('Do you want to delete the Quiz?')?db.doDelteQuiz(i.id):''}} >Delete <DeleteForeverIcon/></button>
                 </div>
               </div>
@@ -122,6 +178,8 @@ function FacultyHome() {
       </div>
       </Fade>
       <Fade right>
+         {/* Section for displaying the details and results of the active quiz */}
+      
       {activeQuiz!=undefined && <div className="faculty-home-admin">
         <div className="quiz-title">
           <div className="main-title" style={{ margin: 'auto', marginBottom: '10px' }}><h3 style={{ filter: 'none' }}>Title : {activeQuiz?.data?.title} [ max mark: {activeQuiz?.data?.max_mark} ]</h3></div>
@@ -129,12 +187,16 @@ function FacultyHome() {
         <ul className="faculty-quiz-props">
           <li style={{ display: 'flex', justifyContent: 'space-evenly', margin: 'auto', textAlign: 'center' }}>
             <h5 style={{ margin: 'auto' }}>Quiz Status</h5>
+             {/* Switch for enabling/disabling the quiz */}
             <IOSSwitch sx={{ m: 2 }} checked={!activeQuiz?.data?.disabled} onClick={(e) => { console.log(activeQuiz?.id); confirm('Do want to ' + (activeQuiz?.data?.disabled? 'Enable' : 'Disable') + ' the '+ activeQuiz?.data?.title +'?') == true ? doUpdate(activeQuiz?.id, activeQuiz?.data?.disabled) : '' }} />
           </li>
           <li style={{ display: 'flex', justifyContent: 'space-evenly', margin: 'auto', textAlign: 'center' }}>
             <h5 style={{ margin: 'auto' }}>Attempts : {quizAttempts.length}</h5>
           </li>
         </ul>
+
+        {/* Component for displaying the result graph of the active quiz */}
+           
         <div className="faculty-quiz-results">
           <ResultGraph data={quizAttempts} quiz={activeQuiz?.data} />
         </div>
