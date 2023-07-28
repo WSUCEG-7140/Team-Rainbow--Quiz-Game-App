@@ -12,8 +12,9 @@
 
 #  Embedded Design Documentation <br>
 
-<a href="https://github.com/WSUCEG-7140/Team-Rainbow--Quiz-Game-App/blob/main/quiz-game/docs/index.html ">visit_embedded_design_doc 
+<a href="https://github.com/WSUCEG-7140/Team-Rainbow--Quiz-Game-App/blob/main/quiz-game/docs/index ">visit_embedded_design_doc 
 <br>
+(![Alt text](<Embedded Doc.jpeg>))
 
 
 #  Quiz Game App - README
