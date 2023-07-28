@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: SignIn.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: SignIn.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { Component } from "react";
+import { Button, Form, FormGroup, Label, Input, Alert } from "reactstrap";
+import { SignUpLink } from "./SignUp";
+import { withRouter } from "react-router-dom";
+import Zoom from 'react-reveal'
+import { PasswordForgetLink } from "./PasswordForget";
+import { auth, db } from "../firebase";
+import * as routes from "../constants/routes";
+import './SignIn.css'
+/**
+ * 
+ * @param {*} history : a component from router that allows to access browser history 
+ * @returns React component that renders a sign-in page
+ */
+const SignInPage = ({ history }) => {
+  return (
+    &lt;Zoom bottom>
+    &lt;div className="div-flex signinBox" style={{margin:'auto',padding:'100px'}}>
+      &lt;div>
+        &lt;h1 className="centered">Sign On&lt;/h1>
+        {/* &lt;img src={logo} className="App-logo" alt="My logo" /> */}
+
+        &lt;SignInForm history={history} />
+        &lt;SignUpLink />
+        &lt;PasswordForgetLink />
+      &lt;/div>
+    &lt;/div>
+    &lt;/Zoom>
+  );
+};
+
+const byPropKey = (propertyName, value) => () => ({
+  [propertyName]: value
+});
+
+const INITIAL_STATE = {
+  email: "",
+  password: "",
+  error: null,
+  showingAlert: false
+};
+
+class SignInForm extends Component {
+  state = { ...INITIAL_STATE };
+
+  onSubmit = event => {
+    const { email, password } = this.state;
+
+    const { history } = this.props;
+
+    auth
+      .doSignInWithEmailAndPassword(email, password)
+      .then((user) => {
+        this.setState({ ...INITIAL_STATE });
+        console.log(user.user)
+        db.doGetAnUnser(user.user.uid).then(res => {
+          console.log(res.data())
+          if (res.data().role==undefined)
+            history.push(routes.HOME);
+          else{
+            history.push(routes.FACULTY);
+          }
+        })
+
+        
+      })
+      .catch(error => {
+        this.setState(byPropKey("error", error));
+        this.timer(); //defined below
+      });
+
+    event.preventDefault();
+  };
+
+  facebookLogin = () => {
+    const { history } = this.props;
+    auth
+      .doFacebookSignIn()
+      .then(authUser => {
+        console.log("authUser", authUser);
+
+        db.doCreateUser(
+          //store some info from facebook into the firebase db
+          authUser.user.uid,
+          authUser.user.displayName,
+          authUser.user.email
+        )
+          .then(() => {
+            // this.setState({
+            //   ...INITIAL_STATE
+            // });
+            history.push(routes.HOME); //redirects to Home Page
+          })
+          .catch(error => {
+            this.setState(byPropKey("error", error));
+          });
+      })
+      .catch(error => {
+        this.setState(byPropKey("error", error));
+      });
+  };
+
+  timer = () => {
+    this.setState({
+      showingAlert: true
+    });
+
+    setTimeout(() => {
+      this.setState({
+        showingAlert: false
+      });
+    }, 4000);
+  };
+
+  render() {
+    const { email, password, error, showingAlert } = this.state;
+
+    const isInvalid = password === "" || email === "";
+
+    return (
+      &lt;div>
+        {showingAlert &amp;&amp; (
+          &lt;Alert color="danger" onLoad={this.timer}>
+            {error.message}
+          &lt;/Alert>
+        )}
+
+        &lt;Form onSubmit={this.onSubmit}>
+          &lt;FormGroup>
+            &lt;Label for="exampleEmail">Email&lt;/Label>
+            &lt;Input
+              type="email"
+              name="email"
+              id="exampleEmail"
+              placeholder="user@gmail.com"
+              style={{borderRadius:'20px',backgroundFilter:'blur(5px)',color:'white',background:'#e1ffe11a'}}
+              value={email}
+              onChange={event =>
+                this.setState(byPropKey("email", event.target.value))
+              }
+            />
+          &lt;/FormGroup>
+          &lt;FormGroup>
+            &lt;Label for="examplePassword">Password&lt;/Label>
+            &lt;Input
+              type="password"
+              name="password"
+              id="examplePassword"
+              placeholder="pass-test"
+              style={{borderRadius:'20px',backgroundFilter:'blur(5px)',color:'white',background:'#e1ffe11a'}}
+              value={password}
+              onChange={event =>
+                this.setState(byPropKey("password", event.target.value))
+              }
+            />
+          &lt;/FormGroup>
+
+          &lt;div className="text-center">
+            &lt;Button disabled={isInvalid} type="submit" style={{borderRadius:'15px'}}>
+              Sign On
+            &lt;/Button>
+          &lt;/div>
+        &lt;/Form>
+
+        &lt;hr />
+
+        {/* &lt;FacebookLoginButton onClick={this.facebookLogin} /> */}
+        {/* &lt;button onClick={this.facebookLogin}>Login with Facebook&lt;/button> */}
+      &lt;/div>
+    );
+  }
+}
+
+export default withRouter(SignInPage);
+
+export { SignInForm };
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="PasswordChangeForm.html">PasswordChangeForm</a></li></ul><h3>Global</h3><ul><li><a href="global.html#AccountPage">AccountPage</a></li><li><a href="global.html#AddQuiz">AddQuiz</a></li><li><a href="global.html#AuthUserContext">AuthUserContext</a></li><li><a href="global.html#E404">E404</a></li><li><a href="global.html#EditQuiz">EditQuiz</a></li><li><a href="global.html#FacultyHome">FacultyHome</a></li><li><a href="global.html#Footer">Footer</a></li><li><a href="global.html#HomePage">HomePage</a></li><li><a href="global.html#LandingPage">LandingPage</a></li><li><a href="global.html#Navbar">Navbar</a></li><li><a href="global.html#NavigationAuth">NavigationAuth</a></li><li><a href="global.html#NavigationNonAuth">NavigationNonAuth</a></li><li><a href="global.html#PasswordForgetPage">PasswordForgetPage</a></li><li><a href="global.html#Question">Question</a></li><li><a href="global.html#Quiz">Quiz</a></li><li><a href="global.html#ResultGraph">ResultGraph</a></li><li><a href="global.html#SignInPage">SignInPage</a></li><li><a href="global.html#groupByDuplicates">groupByDuplicates</a></li><li><a href="global.html#shuffle">shuffle</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Fri Jul 28 2023 17:14:45 GMT-0400 (Eastern Daylight Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
