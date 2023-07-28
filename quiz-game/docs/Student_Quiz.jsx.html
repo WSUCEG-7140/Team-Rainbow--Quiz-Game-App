@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: Student/Quiz.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: Student/Quiz.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { useEffect, useState } from 'react'
+import withAuthorization from "../withAuthorization";
+import './Quiz.css'
+import { db } from '../../firebase'
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import { Prompt } from 'react-router'
+
+/**
+ * Shuffle functionality 
+ * @param {*} array :array of elements that you want to shuffle
+ * @returns shuffled version of the input array
+ * 
+ */
+function shuffle(array) {
+    let currentIndex = array?.length == undefined ? 0 : array.length, randomIndex;
+
+    // While there remain elements to shuffle.
+    while (currentIndex != 0) {
+
+        // Pick a remaining element.
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+
+        // And swap it with the current element.
+        [array[currentIndex], array[randomIndex]] = [
+            array[randomIndex], array[currentIndex]];
+    }
+
+    return array;
+}
+/**
+ * Quiz Functionality
+ * @param {*} props : contains information about logged-in user information, qid and quiz information about such as the title, max marks, etc.
+ * @returns UI for the quiz page, which allows the user to take the quiz
+ */
+function Quiz(props) {
+    
+    const quiz_data = props.location.query.quiz_data
+    const {loggedUser} = props;
+    const id = props.match.params['id'];
+    const [data, setData] = useState([])
+    const [value, setValue] = React.useState('');
+    const [indexer, setIndexer] = useState(0)
+    const [options, setOptions] = useState([])
+    const [sum,setSum] = useState(0)
+    const [shouldBlockNavigation, setShouldBlockNavigation] = useState(false)
+    const handleRadioChange = (event) => {
+        setValue(event.target.value);
+    };
+
+    const validate = (event)=>{
+        setIndexer(indexer + 1)
+        if(data[indexer].data.answer == value )
+        setSum(sum+1)
+        event.preventDefault()
+    }
+
+    useEffect(() => {
+        if (shouldBlockNavigation) {
+            window.onbeforeunload = () => true
+        } else {
+            window.onbeforeunload = undefined
+        }
+        db.getQuizQuestions(id).then((snapshot) => {
+            setData(shuffle(snapshot.docs.map((doc) => ({ id: doc.id, data: doc.data() }))))
+        })
+    }, [])
+
+    useEffect(() => {
+        setValue('')
+        if (indexer &lt; data?.length){
+            setShouldBlockNavigation(true)
+        }
+        if(indexer => data.length){
+            db.doQuizStatusUpdate('Completed',loggedUser.uid,id,sum,quiz_data.max_mark,quiz_data.title)
+        }
+        if (data != [] &amp;&amp; data[indexer] !== undefined) {
+            setOptions(shuffle(data[indexer].data.options))
+        }
+    }, [indexer])
+    useEffect(()=>{},[shouldBlockNavigation])
+    useEffect(() => {
+        setIndexer(0)
+        if (indexer &lt; data?.length){
+            setShouldBlockNavigation(true)
+            
+        }
+        if (data != [] &amp;&amp; data[indexer] !== undefined) {
+            setOptions(shuffle(data[indexer].data.options))
+        }
+    }, [data])
+
+    return (
+        &lt;div className='quizContainer'>
+            &lt;div className='q-no' >
+                Total Questions:
+                &lt;ul>
+                {[...Array(data?.length)].map((x, i) =>
+    &lt;li className={'option ' + (i&lt;indexer?' completed':i==indexer?' current':'')} >{i+1}&lt;/li>
+  )}
+                &lt;/ul>
+            &lt;/div>
+            &lt;div className='q-cont' >
+                {(indexer &lt; data?.length) ? (
+                    &lt;>
+                        &lt;>
+                            &lt;Prompt
+                                when={shouldBlockNavigation}
+                                message='You quiz is not yet completed, are you sure you want to leave?'
+                            />
+                            {/* Component JSX */}
+                        &lt;/>
+                        &lt;div className='question' >
+                            Question - {indexer + 1}
+                            &lt;h2>{data[indexer].data.question}&lt;/h2>
+                        &lt;/div>
+                        &lt;div className='options'>
+                            &lt;RadioGroup
+                                aria-labelledby="demo-error-radios"
+                                name="quiz"
+                                value={value}
+                                onChange={handleRadioChange}
+                                style={{ width: '100%', marginLeft: '100px' }}
+                            >
+                                {options?.map((i) =>
+                                    &lt;FormControlLabel value={i} control={&lt;Radio />} label={i} />
+                                )}
+
+                            &lt;/RadioGroup>
+                        &lt;/div>
+                        {value == '' ? (&lt;button className='student_next' disabled >Next Question ▶  &lt;/button>) :
+                            (&lt;button className='student_next' onClick={validate} >Next Question ▶  &lt;/button>)}
+                    &lt;/>
+                ) : (
+                    &lt;div style={{ width: '100%', textAlign: 'center', margin: 'auto' }}>
+                        You have reached the end of Quiz!!&lt;br>&lt;/br>
+                        Your score for this Quiz: {sum}
+                    &lt;/div>
+                )}
+
+
+            &lt;/div>
+        &lt;/div>
+    )
+}
+const authCondition = authUser => !!authUser;
+
+export default withAuthorization(authCondition)(Quiz);</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="PasswordChangeForm.html">PasswordChangeForm</a></li></ul><h3>Global</h3><ul><li><a href="global.html#AccountPage">AccountPage</a></li><li><a href="global.html#AddQuiz">AddQuiz</a></li><li><a href="global.html#AuthUserContext">AuthUserContext</a></li><li><a href="global.html#E404">E404</a></li><li><a href="global.html#EditQuiz">EditQuiz</a></li><li><a href="global.html#FacultyHome">FacultyHome</a></li><li><a href="global.html#Footer">Footer</a></li><li><a href="global.html#HomePage">HomePage</a></li><li><a href="global.html#LandingPage">LandingPage</a></li><li><a href="global.html#Navbar">Navbar</a></li><li><a href="global.html#NavigationAuth">NavigationAuth</a></li><li><a href="global.html#NavigationNonAuth">NavigationNonAuth</a></li><li><a href="global.html#PasswordForgetPage">PasswordForgetPage</a></li><li><a href="global.html#Question">Question</a></li><li><a href="global.html#Quiz">Quiz</a></li><li><a href="global.html#ResultGraph">ResultGraph</a></li><li><a href="global.html#SignInPage">SignInPage</a></li><li><a href="global.html#groupByDuplicates">groupByDuplicates</a></li><li><a href="global.html#shuffle">shuffle</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Fri Jul 28 2023 17:14:45 GMT-0400 (Eastern Daylight Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

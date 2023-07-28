@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: Student/Home.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: Student/Home.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { useEffect, useState } from 'react'
+import withAuthorization from "../withAuthorization";
+import { Link } from 'react-router-dom';
+import { db, auth } from '../../firebase'
+import * as routes from '../../constants/routes'
+import './Home.css'
+import { Fade, Flip } from 'react-reveal'
+import QuizIcon from '@mui/icons-material/Quiz';
+/**
+ * Student Home Page Component
+ * @param {*} props 
+loggedUser: This prop represents the currently logged-in user and contains user-related information, such as displayName, emailVerified, and uid.
+ * @returns JSX, which includes various elements, such as user profile details, active quizzes, quiz scores, and a button to verify the user's email.
+ *
+ */
+function HomePage(props) {
+  const [quizes, setQuizes] = useState([]);
+  const [user,setUser] = useState([])
+  const { loggedUser } = props;
+  useEffect(() => {
+    if(loggedUser.emailVerified)
+    {
+      db.allQuizes().then((snapshot) => {
+      setQuizes(snapshot.docs.map((doc) => ({ id: doc.id, data: doc.data() })))
+    });
+    db.doGetUserQuizAttempts(loggedUser.uid).then((snapshot) => {
+      setUser(snapshot.docs.map((doc) => ({ id: doc.id, data: doc.data() })))
+    })
+  }
+  }, [])
+
+  const updateStatus = (e,data,id) =>{
+    db.doQuizStatusUpdate('pending',loggedUser.uid,id,0,data.max_mark,data.title)
+    
+   }
+  useEffect(() => { console.log(user) }, [quizes,user])
+  return (
+    &lt;>
+      {loggedUser.emailVerified ?
+        (&lt;div className='home-cont' >
+          {/* Available Quizes:
+          {quizes.map((i) => &lt;Link to={routes.QUIZ + i.id}>{i.data.title}&lt;/Link >)} */}
+          &lt;div className="profile-section">
+            &lt;Fade left>
+              &lt;div className="pic" >
+                &lt;lord-icon
+                  src="https://cdn.lordicon.com/ajkxzzfb.json"
+                  trigger="hover"
+                  colors="primary:#4be1ec,secondary:#cb5eee"
+                  style={{ width: 'inherit', height: 'inherit' }}>
+                &lt;/lord-icon>
+              &lt;/div>
+            &lt;/Fade>
+            &lt;Fade right>
+              &lt;div className='profile' >
+                &lt;h1>
+                  {loggedUser.displayName}
+                &lt;/h1>
+                &lt;p style={{ marginTop: '-10px' }}>Grad Student, CSE&lt;/p>
+                &lt;div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 'auto' }}>
+                  &lt;div className='profile-icon' >
+                    &lt;lord-icon
+                      src="https://cdn.lordicon.com/dxoycpzg.json"
+                      trigger="morph"
+                      colors="primary:#08a88a,secondary:#121331"
+                      style={{ height: 'inherit', width: '100px', marginRight: 'auto' }}>
+                    &lt;/lord-icon>
+                    &lt;p>&lt;strong>Total Quizes Taken&lt;/strong>10&lt;/p>
+                  &lt;/div>
+                  &lt;div className='profile-icon' >
+                    &lt;lord-icon
+                      className='icon-main'
+                      src="https://cdn.lordicon.com/oegrrprk.json"
+                      trigger="morph"
+                      colors="primary:#08a88a,secondary:#121331"
+                      style={{ height: 'inherit', width: '100px', marginRight: 'auto', '&amp;:hover': { filter: 'none', height: '10px', width: '10px' } }}>
+                    &lt;/lord-icon>
+                    &lt;p>&lt;strong>Highest Score&lt;/strong>10&lt;/p>
+                  &lt;/div>
+                &lt;/div>
+              &lt;/div>
+            &lt;/Fade>
+          &lt;/div>
+          &lt;div className='dummy' >
+            &lt;Flip top>
+              &lt;div className='dummy-a'>
+                &lt;div className='quiz-heading'>
+                  &lt;h1>Active Quizes &lt;QuizIcon sx={{ fontSize: 40 }} />&lt;/h1>
+                &lt;/div>
+                &lt;div className='quiz-set' >
+                  {quizes.map((i) =>(
+                    &lt;div className={'quizes-section ' + ((i.data.disabled)?"quiz-completed":"")}>
+                    &lt;div className="quiz-title">
+                      &lt;div className="main-title">&lt;h3>{i.data.title}&lt;/h3>&lt;/div>
+                      &lt;div className="max-mark">max-mark: {i.data.max_mark}&lt;/div>
+                    &lt;/div>
+                    &lt;button disabled={i.data.disabled} className="take-quiz">{i.data.disabled==false?&lt;Link to={{pathname:routes.QUIZ + i.id,query:{user_data:user,quiz_data:i.data}}} onClick={(e)=>updateStatus(e,i.data,i.id)} className='quiz-take-quiz'  style={{TextDecoration:'none',color:'inherit'}}>Take Quiz&lt;/Link >:&lt;>Take Quiz&lt;/>}&lt;/button>
+                  &lt;/div>
+                     ))}
+                &lt;/div>
+
+              &lt;/div>
+            &lt;/Flip>
+            &lt;Flip bottom>
+              &lt;div className='dummy-b'>
+                &lt;div className='quiz-heading'>
+                  &lt;h1>Quiz Scores &lt;/h1>
+                  &lt;lord-icon
+                    src="https://cdn.lordicon.com/trxrghhv.json"
+                    trigger="morph"
+                    colors="primary:#ffc738,secondary:#92140c"
+                    style={{ height: 'inherit', width: '100px', marginRight: 'auto' }}>
+                  &lt;/lord-icon>
+                &lt;/div>
+                &lt;div className='quiz-set' >
+                  {user.map((quiz)=>(
+                    &lt;div className='quizes-section'>
+                    &lt;div className="quiz-title">
+                      &lt;div className="main-title">&lt;h3>{quiz.data.title}&lt;/h3>&lt;/div>
+                      &lt;div className="max-mark">max-mark: {quiz.data.t_score}&lt;/div>
+                    &lt;/div> 
+                    &lt;div disabled className="score">{quiz.data.status=='pending'?&lt;>Pending...&lt;/>:&lt;>{quiz.data.score}/{quiz.data.t_score}&lt;/>}&lt;/div>
+                  &lt;/div>
+                  ))}
+                &lt;/div>
+              &lt;/div>
+            &lt;/Flip>
+          &lt;/div>
+        &lt;/div>) :
+        &lt;div className='verify-container'>
+          User Not verified!!
+          {
+            !loggedUser.emailVerified
+            &amp;&amp;
+            &lt;button style={{ padding: '10px', borderRadius: '20px', width: '200px', backgroundFilter: 'blur(5px)', background: '#20e6c839', color: 'white' }} onClick={(e) => { auth.doEmailVerification(props) }} >Verify Email!&lt;/button>
+          }
+        &lt;/div>}
+    &lt;/>
+  )
+}
+
+const authCondition = authUser => !!authUser;
+
+export default withAuthorization(authCondition)(HomePage);</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="PasswordChangeForm.html">PasswordChangeForm</a></li></ul><h3>Global</h3><ul><li><a href="global.html#AccountPage">AccountPage</a></li><li><a href="global.html#AddQuiz">AddQuiz</a></li><li><a href="global.html#AuthUserContext">AuthUserContext</a></li><li><a href="global.html#E404">E404</a></li><li><a href="global.html#EditQuiz">EditQuiz</a></li><li><a href="global.html#FacultyHome">FacultyHome</a></li><li><a href="global.html#Footer">Footer</a></li><li><a href="global.html#HomePage">HomePage</a></li><li><a href="global.html#LandingPage">LandingPage</a></li><li><a href="global.html#Navbar">Navbar</a></li><li><a href="global.html#NavigationAuth">NavigationAuth</a></li><li><a href="global.html#NavigationNonAuth">NavigationNonAuth</a></li><li><a href="global.html#PasswordForgetPage">PasswordForgetPage</a></li><li><a href="global.html#Question">Question</a></li><li><a href="global.html#Quiz">Quiz</a></li><li><a href="global.html#ResultGraph">ResultGraph</a></li><li><a href="global.html#SignInPage">SignInPage</a></li><li><a href="global.html#groupByDuplicates">groupByDuplicates</a></li><li><a href="global.html#shuffle">shuffle</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Fri Jul 28 2023 17:14:45 GMT-0400 (Eastern Daylight Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

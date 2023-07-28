@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: Faculty/FacultyHome.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: Faculty/FacultyHome.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { useEffect, useState } from 'react'
+import withAuthorization from "../withAuthorization";
+import AddCardIcon from '@mui/icons-material/AddCard';
+import { Link } from 'react-router-dom';
+import { db, auth } from '../../firebase'
+import * as routes from '../../constants/routes'
+import './FacultyHome.css'
+import { styled } from '@mui/material/styles';
+import Switch from '@mui/material/Switch';
+import ResultGraph from './ResultGraph';
+import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import ReactModal from 'react-modal';
+import AddQuiz from './AddQuiz';
+import EditQuiz from './EditQuiz';
+import { Fade } from 'react-reveal';
+
+
+// @ref R54_0, R22_0, R80_0, R86_0
+
+//This Component is part of the @ref Model within the overall @ref ModelViewController controller.
+//This Component implements the methods related to faculty features.
+
+
+
+// Styling for the custom switch component
+const IOSSwitch = styled((props) => (
+  &lt;Switch focusVisibleClassName=".Mui-focusVisible" disableRipple {...props} />
+))(({ theme }) => ({
+  width: 42,
+  height: 26,
+  padding: 0,
+  '&amp; .MuiSwitch-switchBase': {
+    padding: 0,
+    margin: 2,
+    transitionDuration: '300ms',
+    '&amp;.Mui-checked': {
+      transform: 'translateX(16px)',
+      color: '#fff',
+      '&amp; + .MuiSwitch-track': {
+        backgroundColor: theme.palette.mode === 'dark' ? '#2ECA45' : '#65C466',
+        opacity: 1,
+        border: 0,
+      },
+      '&amp;.Mui-disabled + .MuiSwitch-track': {
+        opacity: 0.5,
+      },
+    },
+    '&amp;.Mui-focusVisible .MuiSwitch-thumb': {
+      color: '#33cf4d',
+      border: '6px solid #fff',
+    },
+    '&amp;.Mui-disabled .MuiSwitch-thumb': {
+      color:
+        theme.palette.mode === 'light'
+          ? theme.palette.grey[100]
+          : theme.palette.grey[600],
+    },
+    '&amp;.Mui-disabled + .MuiSwitch-track': {
+      opacity: theme.palette.mode === 'light' ? 0.7 : 0.3,
+    },
+  },
+  '&amp; .MuiSwitch-thumb': {
+    boxSizing: 'border-box',
+    width: 22,
+    height: 22,
+  },
+  '&amp; .MuiSwitch-track': {
+    borderRadius: 26 / 2,
+    backgroundColor: theme.palette.mode === 'light' ? '#E9E9EA' : '#39393D',
+    opacity: 1,
+    transition: theme.transitions.create(['background-color'], {
+      duration: 500,
+    }),
+  },
+}));
+
+/**
+ *  
+ *FacultyHome Component: It allows admin to add, delete, edit, and enable/disable quizzes along with resultant graph
+ *  
+ * @returns  All quizes, Add Quiz button,Edit &amp; delete buttons. disable quiz and result graph for corresponding quizzes.
+ *
+ */
+function FacultyHome() {
+  // State variables to manage data and modals
+  const [quizData, setQuizData] = useState([])
+  const [activeQuiz, setActiveQuiz] = useState()
+  const [quizAttempts, setQuizAttempts] = useState([])
+  const [addQuizModal,setAddQuizModal] = useState(false)
+  const [EditQuizModal,setEditQuizModal] = useState(false)
+
+  // Function to update the quiz status (enable/disable)
+  {/**@ref R54_0 */}
+  const doUpdate =(id,status)=>{
+    console.log(activeQuiz)
+    let data = activeQuiz.data
+    db.doQuizStatus_Enable_Disable(id, status).then(()=>{
+      data['disabled']=!status;
+      console.log(data)
+    setActiveQuiz({...activeQuiz, data: data})})
+  }
+
+  // Fetch all quiz data on component mount
+  useEffect(() => {
+    db.doTotalQuizesData().onSnapshot((snapshot) => {
+      setQuizData(snapshot.docs.map((doc) => ({ id: doc.id, data: doc.data() })))
+    })
+  }
+    , [])
+
+     // Log the quizData whenever it changes
+  useEffect(() => { console.log(quizData) }, [quizData])
+
+   // Fetch quiz attempts data for the currently active quiz
+  useEffect(() => {
+    console.log('Active Quiz Object: ', activeQuiz); 
+    db.doGetQuizAttemps(activeQuiz?.id).then((snapshot) => {
+      setQuizAttempts(snapshot.docs.map((doc) => ({ id: doc.id, data: doc.data() })))
+    })
+  }, [activeQuiz])
+
+// JSX code for rendering the faculty home page UI
+  return (
+    &lt;div className="faculty-home">
+      &lt;Fade left>
+      &lt;div className="faculty-quizes">
+        {/* Section for displaying all quizzes */}
+        &lt;div className='faculty-quiz-heading'>
+          &lt;h1>All Quizes &lt;/h1>
+        &lt;/div>
+        &lt;div className="add-quiz-faculty">
+          {/* Button to add a new quiz */}
+          &lt;h3 style={{ textDecoration: 'none' }} onClick={()=>{setAddQuizModal(true)}} >Add Quiz &lt;AddCardIcon style={{ fontSize: 'inherit' }} />&lt;/h3>
+           {/* Modal for adding a new quiz */}
+          &lt;ReactModal
+          isOpen={addQuizModal}
+          contentLabel="Example Modal"
+          onRequestClose={()=>setAddQuizModal(false)}
+          className='add-quiz-modal'
+          overlayClassName="add-quiz-modal-overlay"
+          >
+            &lt;button onClick={()=>{setAddQuizModal(false)}} > X &lt;/button>
+            &lt;AddQuiz setIsOpen={(e)=>{setAddQuizModal(e)}} />
+          &lt;/ReactModal>
+           {/** Modal for editing a quiz. @ref R22_0 */ }
+          
+          &lt;ReactModal
+          isOpen={EditQuizModal}
+          contentLabel="Example Modal"
+          className='add-quiz-modal'
+          overlayClassName="add-quiz-modal-overlay"
+          >
+            &lt;button onClick={()=>{setEditQuizModal(false)}} > X &lt;/button>
+            &lt;EditQuiz qid={activeQuiz?.id} setIsOpen={(e)=>{setEditQuizModal(e)}} />
+          &lt;/ReactModal>
+        &lt;/div>
+         {/* Section for displaying the list of quizzes */}
+        &lt;div className="faculty-quiz-set "  >
+          {
+            quizData.map((i,index) => (
+              &lt;div className={'quizes-section faculty-quizes-section ' + ((activeQuiz == i) ? 'faculty-active-quiz' : '')} onClick={() => { console.log('Qid: ', i.id); setActiveQuiz(i) }}>
+                {(activeQuiz == undefined) ? setActiveQuiz(i):''}
+                &lt;div className="quiz-title">
+                  &lt;div className="main-title">&lt;h3>{i.data['title']}&lt;/h3>&lt;/div>
+                  &lt;div className="max-mark">max-mark: {i.data['max_mark']}&lt;/div>
+                &lt;/div>
+                &lt;div style={{ display: 'flex' }}>
+                  {/* Button to edit the quiz */}
+                  &lt;button className="take-quiz" onClick={()=>{setEditQuizModal(true)}}>Edit &lt;AppRegistrationIcon />&lt;/button>
+                  {/* Button to delete the quiz.@ref R_86_0 */}
+                  &lt;button className="take-quiz" onClick={(e)=>{confirm('Do you want to delete the Quiz?')?db.doDelteQuiz(i.id):''}} >Delete &lt;DeleteForeverIcon/>&lt;/button>
+                &lt;/div>
+              &lt;/div>
+            ))
+          }
+        &lt;/div>
+      &lt;/div>
+      &lt;/Fade>
+      &lt;Fade right>
+         {/* Section for displaying the details and results of the active quiz */}
+      
+      {activeQuiz!=undefined &amp;&amp; &lt;div className="faculty-home-admin">
+        &lt;div className="quiz-title">
+          &lt;div className="main-title" style={{ margin: 'auto', marginBottom: '10px' }}>&lt;h3 style={{ filter: 'none' }}>Title : {activeQuiz?.data?.title} [ max mark: {activeQuiz?.data?.max_mark} ]&lt;/h3>&lt;/div>
+        &lt;/div>
+        &lt;ul className="faculty-quiz-props">
+          &lt;li style={{ display: 'flex', justifyContent: 'space-evenly', margin: 'auto', textAlign: 'center' }}>
+            &lt;h5 style={{ margin: 'auto' }}>Quiz Status&lt;/h5>
+             {/* Switch for enabling/disabling the quiz */}
+            &lt;IOSSwitch sx={{ m: 2 }} checked={!activeQuiz?.data?.disabled} onClick={(e) => { console.log(activeQuiz?.id); confirm('Do want to ' + (activeQuiz?.data?.disabled? 'Enable' : 'Disable') + ' the '+ activeQuiz?.data?.title +'?') == true ? doUpdate(activeQuiz?.id, activeQuiz?.data?.disabled) : '' }} />
+          &lt;/li>
+          &lt;li style={{ display: 'flex', justifyContent: 'space-evenly', margin: 'auto', textAlign: 'center' }}>
+            &lt;h5 style={{ margin: 'auto' }}>Attempts : {quizAttempts.length}&lt;/h5>
+          &lt;/li>
+        &lt;/ul>
+
+        {/* Component for displaying the result graph of the active quiz */}
+           
+        &lt;div className="faculty-quiz-results">
+          &lt;ResultGraph data={quizAttempts} quiz={activeQuiz?.data} />
+        &lt;/div>
+      &lt;/div>}
+      &lt;/Fade>
+    &lt;/div>
+  )
+}
+
+const authCondition = authUser => !!authUser;
+
+export default withAuthorization(authCondition)(FacultyHome);
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="PasswordChangeForm.html">PasswordChangeForm</a></li></ul><h3>Global</h3><ul><li><a href="global.html#AccountPage">AccountPage</a></li><li><a href="global.html#AddQuiz">AddQuiz</a></li><li><a href="global.html#AuthUserContext">AuthUserContext</a></li><li><a href="global.html#E404">E404</a></li><li><a href="global.html#EditQuiz">EditQuiz</a></li><li><a href="global.html#FacultyHome">FacultyHome</a></li><li><a href="global.html#Footer">Footer</a></li><li><a href="global.html#HomePage">HomePage</a></li><li><a href="global.html#LandingPage">LandingPage</a></li><li><a href="global.html#Navbar">Navbar</a></li><li><a href="global.html#NavigationAuth">NavigationAuth</a></li><li><a href="global.html#NavigationNonAuth">NavigationNonAuth</a></li><li><a href="global.html#PasswordForgetPage">PasswordForgetPage</a></li><li><a href="global.html#Question">Question</a></li><li><a href="global.html#Quiz">Quiz</a></li><li><a href="global.html#ResultGraph">ResultGraph</a></li><li><a href="global.html#SignInPage">SignInPage</a></li><li><a href="global.html#groupByDuplicates">groupByDuplicates</a></li><li><a href="global.html#shuffle">shuffle</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Fri Jul 28 2023 17:14:45 GMT-0400 (Eastern Daylight Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
