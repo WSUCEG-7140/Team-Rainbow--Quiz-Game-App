@@ -1,17 +1,18 @@
 ## Team members:
 <br>
-1) Siri Chandana Sirigiri : @siri0314
-2) Sushmitha Kishor       : @sushmithakishor23
-3) Shirini                : @Shirini4
-4) Harsha Vardhan Bojanki : @Harsha Bojanki
-5) Teja Mummana           : @MummanaTeja
-6) Sravya Kavuru          : @sravyakavuru4
+
+1) Siri Chandana Sirigiri : @siri0314 <br>
+2) Sushmitha Kishor       : @sushmithakishor23 <br>
+3) Shirini                : @Shirini4 <br>
+4) Harsha Vardhan Bojanki : @Harsha Bojanki <br>
+5) Teja Mummana           : @MummanaTeja <br>
+6) Sravya Kavuru          : @sravyakavuru4 <br>
 
 <br>
 
 #  Embedded Design Documentation <br>
 
-<a href="https://github.com/WSUCEG-7140/Team-Rainbow--Quiz-Game-App/blob/main/quiz-game/docs/index.html ">visit_embedded_design_doc /a>
+<a href="https://github.com/WSUCEG-7140/Team-Rainbow--Quiz-Game-App/blob/main/quiz-game/docs/index.html ">visit_embedded_design_doc 
 <br>
 
 
