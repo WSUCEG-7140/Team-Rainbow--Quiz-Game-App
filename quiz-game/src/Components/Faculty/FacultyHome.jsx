@@ -76,9 +76,11 @@ const IOSSwitch = styled((props) => (
 }));
 
 /**
- *  FacultyHome Component: It allows admin to add, delete, edit, and enable/disable quizzes along with resultant graph
+ *  
+ *FacultyHome Component: It allows admin to add, delete, edit, and enable/disable quizzes along with resultant graph
  *  
  * @returns  All quizes, Add Quiz button,Edit & delete buttons. disable quiz and result graph for corresponding quizzes.
+ *
  */
 function FacultyHome() {
   // State variables to manage data and modals
