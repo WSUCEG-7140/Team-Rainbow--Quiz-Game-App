@@ -15,13 +15,12 @@
 
 <a href="https://github.com/WSUCEG-7140/Team-Rainbow--Quiz-Game-App/blob/main/quiz-game/docs/index.html ">visit_embedded_design_doc <br>
 To execute docs:
-<br>
-    ```shell
-    npm install```
+``` npm install```
     <br>
     ```jsdoc src -r -d docs```
 <br>
-![Alt text](<Embedded Doc.jpeg>))
+
+![Alt text](<Embedded Doc.jpeg>
 
 
 #  Quiz Game App - README
