@@ -8,14 +8,15 @@
 4) Harsha Vardhan Bojanki : @Harsha Bojanki <br>
 5) Teja Mummana           : @MummanaTeja <br>
 6) Sravya Kavuru          : @sravyakavuru4 <br>
-<br>
+
+
 #Literate Programming in below files:
- <br>
-[ProjectDesign](https://github.com/WSUCEG-7140/A-Team/blob/main/design.md) 
+  
+[ProjectDesign](https://github.com/WSUCEG-7140/A-Team/blob/main/design.md)
 
 [Requirements -linked Issues](https://github.com/WSUCEG-7140/A-Team/blob/main/requirements.md) 
 
-[FacultyHome.jsx](https://github.com/WSUCEG-7140/Team-Rainbow--Quiz-Game-App/blob/main/quiz-game/src/Components/Faculty/FacultyHome.jsx) 
+[FacultyHome.jsx](https://github.com/WSUCEG-7140/Team-Rainbow--Quiz-Game-App/blob/main/quiz-game/src/Components/Faculty/FacultyHome.jsx)
 
 [AddQuiz.jsx](https://github.com/WSUCEG-7140/Team-Rainbow--Quiz-Game-App/blob/main/quiz-game/src/Components/Faculty/AddQuiz.jsx) 
 
@@ -28,7 +29,7 @@
 [Quiz.jsx](https://github.com/WSUCEG-7140/Team-Rainbow--Quiz-Game-App/blob/main/quiz-game/src/Components/Student/Quiz.jsx)
 
  #Programming By Contract
-  <br>
+
   These mentioned PRs states that pre condition: definition of done is equals to post condition: tested code.
   the unit tests involved are used to ensure that the code written is as per requirements.
   
