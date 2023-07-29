@@ -30,18 +30,14 @@ const INITIAL_STATE = {
 const byPropKey = (propertyName, value) => () => ({
   [propertyName]: value
 });
-
+/**
+ * SignUp form Class contains form validation, form submission , state management and 
+ */
 class SignUpForm extends Component {
   //defining state
   state = {
     ...INITIAL_STATE
   };
-
-  // onChange = (propName, value) => {
-  //   this.setState({
-  //     [propName]: value
-  //   });
-  // };
 
   onSubmit = event => {
     const { username, email, passwordOne } = this.state;
@@ -176,6 +172,10 @@ class SignUpForm extends Component {
 
 //################### Sign Up Link ###################
 //used in the sign in when the user don't have an account registered yet
+/**
+ * SignUp functionality
+ * @returns JSX component to perform Sign In 
+ */
 const SignUpLink = () => (
   <p>
     Don't have an account? <Link to={routes.SIGN_UP}>Sign Up</Link>
@@ -185,40 +185,3 @@ const SignUpLink = () => (
 //exports
 export default withRouter(SignUpPage); //using a HoC to get access to history
 export { SignUpForm, SignUpLink };
-
-// <form onSubmit={this.onSubmit}>
-//   <input
-//     value={username}
-//     onChange={e => this.setState(byPropKey("username", e.target.value))}
-//     // onChange={e => this.onChange("username", e.target.value)}
-//     type="text"
-//     placeholder="Full Name"
-//   />
-//   <input
-//     value={email}
-//     onChange={e => this.setState(byPropKey("email", e.target.value))}
-//     type="text"
-//     placeholder="Email Address"
-//   />
-//   <input
-//     value={passwordOne}
-//     onChange={e =>
-//       this.setState(byPropKey("passwordOne", e.target.value))
-//     }
-//     type="password"
-//     placeholder="Password"
-//   />
-//   <input
-//     value={passwordTwo}
-//     onChange={e =>
-//       this.setState(byPropKey("passwordTwo", e.target.value))
-//     }
-//     type="password"
-//     placeholder="Confirm Password"
-//   />
-//   <button disabled={isInvalid} type="submit">
-//     Sign Up
-//   </button>
-
-//   {error && <p>{error.message}</p>}
-// </form>
