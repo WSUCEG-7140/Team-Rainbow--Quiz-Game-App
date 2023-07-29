@@ -21,7 +21,7 @@
 
 [EditQuiz.jsx](https://github.com/WSUCEG-7140/Team-Rainbow--Quiz-Game-App/blob/main/quiz-game/src/Components/Faculty/EditQuiz.jsx)
 
-[StudentHome.jsx] (https://github.com/WSUCEG-7140/Team-Rainbow--Quiz-Game-App/blob/main/quiz-game/src/Components/Student/Home.jsx)
+[StudentHome.jsx](https://github.com/WSUCEG-7140/Team-Rainbow--Quiz-Game-App/blob/main/quiz-game/src/Components/Student/Home.jsx)
 
 [Question.jsx](https://github.com/WSUCEG-7140/Team-Rainbow--Quiz-Game-App/blob/main/quiz-game/src/Components/Student/Question.jsx)
 
@@ -29,6 +29,9 @@
 
  #Programming By Contract
   <br>
+  These mentioned PRs states that pre condition: definition of done is equals to post condition: tested code.
+  the unit tests involved are used to ensure that the code written is as per requirements.
+  
  [SignInPR](https://github.com/WSUCEG-7140/Team-Rainbow--Quiz-Game-App/pull/43#issuecomment-1656519207) <br>
  [FooterPR](https://github.com/WSUCEG-7140/Team-Rainbow--Quiz-Game-App/pull/81) <br>
  [NavbarPR](https://github.com/WSUCEG-7140/Team-Rainbow--Quiz-Game-App/pull/94) <br>
