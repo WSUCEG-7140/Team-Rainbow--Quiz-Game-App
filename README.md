@@ -38,10 +38,14 @@
  [FooterPR](https://github.com/WSUCEG-7140/Team-Rainbow--Quiz-Game-App/pull/81) 
  
  [NavbarPR](https://github.com/WSUCEG-7140/Team-Rainbow--Quiz-Game-App/pull/94) 
+
+ [signUpPR](https://github.com/WSUCEG-7140/Team-Rainbow--Quiz-Game-App/issues/31)
  
- [E404PR](https://github.com/WSUCEG-7140/Team-Rainbow--Quiz-Game-App/pull/90)
+ [E404PR](https://github.com/WSUCEG-7140/Team-Rainbow--Quiz-Game-App/pull/70)
+
+  
  
- [signUpPR](https://github.com/WSUCEG-7140/Team-Rainbow--Quiz-Game-App/pull/98)
+
 
 
 
