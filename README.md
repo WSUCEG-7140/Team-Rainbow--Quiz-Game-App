@@ -48,7 +48,7 @@
 <br>
 #  Embedded Design Documentation <br>
 
-[view doc] https://github.com/WSUCEG-7140/Team-Rainbow--Quiz-Game-App/blob/main/quiz-game/docs/index.html
+[view doc](https://github.com/WSUCEG-7140/Team-Rainbow--Quiz-Game-App/blob/main/quiz-game/docs/index.html)
 
       Since this project is developed using ReactJS we used JSdoc to document the design. please clone repository and open index.html to view the webpage. Sample image is attached [here](https://github.com/WSUCEG-7140/Team-Rainbow--Quiz-Game-App/blob/main/Embedded%20Doc.jpeg).
 For executing again install dependencies using <br>$npm install <br>
