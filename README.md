@@ -8,24 +8,20 @@
 4) Harsha Vardhan Bojanki : @Harsha Bojanki <br>
 5) Teja Mummana           : @MummanaTeja <br>
 6) Sravya Kavuru          : @sravyakavuru4 <br>
-
 <br>
-# Programming By Contract and Literate Programming
+#Literate Programming in below files:
+ <br>
+[Project Design](https://github.com/WSUCEG-7140/A-Team/blob/main/design.md) <br>
+[Requirements -linked Issues](https://github.com/WSUCEG-7140/A-Team/blob/main/requirements.md ) <br>
+[FacultyHome.jsx]( https://github.com/WSUCEG-7140/Team-Rainbow--Quiz-Game-App/blob/main/quiz-game/src/Components/Faculty/FacultyHome.jsx) <br>
+[AddQuiz.jsx]( https://github.com/WSUCEG-7140/Team-Rainbow--Quiz-Game-App/blob/main/quiz-game/src/Components/Faculty/AddQuiz.jsx) <br>
+[EditQuiz.jsx](https://github.com/WSUCEG-7140/Team-Rainbow--Quiz-Game-App/blob/main/quiz-game/src/Components/Faculty/EditQuiz.jsx) <br>
+[StudentHome.jsx] (https://github.com/WSUCEG-7140/Team-Rainbow--Quiz-Game-App/blob/main/quiz-game/src/Components/Student/Home.jsx) <br>
+[Question.jsx](https://github.com/WSUCEG-7140/Team-Rainbow--Quiz-Game-App/blob/main/quiz-game/src/Components/Student/Question.jsx) <br>
+[Quiz.jsx]( https://github.com/WSUCEG-7140/Team-Rainbow--Quiz-Game-App/blob/main/quiz-game/src/Components/Student/Quiz.jsx) <br>
 
-##Literate Programming in below files:
-
- [Project Design](https://github.com/WSUCEG-7140/A-Team/blob/main/design.md)
-
- [Requirements -linked Issues](https://github.com/WSUCEG-7140/A-Team/blob/main/requirements.md )
-
- https://github.com/WSUCEG-7140/Team-Rainbow--Quiz-Game-App/blob/main/quiz-game/src/Components/Faculty/FacultyHome.jsx
- https://github.com/WSUCEG-7140/Team-Rainbow--Quiz-Game-App/blob/main/quiz-game/src/Components/Faculty/AddQuiz.jsx
- https://github.com/WSUCEG-7140/Team-Rainbow--Quiz-Game-App/blob/main/quiz-game/src/Components/Faculty/EditQuiz.jsx
- https://github.com/WSUCEG-7140/Team-Rainbow--Quiz-Game-App/blob/main/quiz-game/src/Components/Student/Home.jsx
- https://github.com/WSUCEG-7140/Team-Rainbow--Quiz-Game-App/blob/main/quiz-game/src/Components/Student/Question.jsx
- https://github.com/WSUCEG-7140/Team-Rainbow--Quiz-Game-App/blob/main/quiz-game/src/Components/Student/Quiz.jsx
-
- ##Programming By Contract
+ #Programming By Contract
+  <br>
  [SignInPR](https://github.com/WSUCEG-7140/Team-Rainbow--Quiz-Game-App/pull/43#issuecomment-1656519207) <br>
  [FooterPR](https://github.com/WSUCEG-7140/Team-Rainbow--Quiz-Game-App/pull/81) <br>
  [NavbarPR](https://github.com/WSUCEG-7140/Team-Rainbow--Quiz-Game-App/pull/94) <br>
