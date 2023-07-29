@@ -1,7 +1,11 @@
 import React from "react";
-import { firebase,db } from "../firebase";
+import { db, firebase } from "../firebase";
 
 import AuthUserContext from "./AuthUserContext"; //using provider's context api
+// @ref R39_0
+
+//This Component is part of the @ref Model within the overall @ref ModelViewController model.
+//This Component implements the methods related to authentication of  the user.
 
 const withAuthentication = Component => {
   class WithAuthentication extends React.Component {

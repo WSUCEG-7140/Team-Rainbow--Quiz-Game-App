@@ -1,11 +1,17 @@
-import React, { useEffect, useState } from 'react'
-import withAuthorization from "../withAuthorization";
-import './Quiz.css'
-import { db } from '../../firebase'
+import FormControlLabel from '@mui/material/FormControlLabel';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import { Prompt } from 'react-router'
+import React, { useEffect, useState } from 'react';
+import { Prompt } from 'react-router';
+import { db } from '../../firebase';
+import withAuthorization from "../withAuthorization";
+import './Quiz.css';
+
+
+// @ref R33_0
+
+//This Component is part of the @ref Model within the overall @ref ModelViewController model.
+//This Component implements the methods related to attend quiz by the user.
 
 /**
  * Shuffle functionality 

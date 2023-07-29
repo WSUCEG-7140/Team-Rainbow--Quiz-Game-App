@@ -1,10 +1,14 @@
 import React, { Component } from "react";
+import { Fade } from 'react-reveal';
 import { Link, withRouter } from "react-router-dom";
-import { Button, Form, FormGroup, Label, Input, Alert } from "reactstrap";
-import {Fade} from 'react-reveal'
+import { Alert, Button, Form, FormGroup, Input, Label } from "reactstrap";
 import * as routes from "../constants/routes";
 import { auth, db } from "../firebase";
 
+// @ref R60_0
+
+//This Component is part of the @ref Model within the overall @ref ModelViewController model.
+//This Component implements the methods related to sign_up by the user.
 const SignUpPage = ({ history }) => (
   <Fade top>
     <div className="div-flex signinBox" style={{margin:'auto',padding:'50px',minWidth:'400px',marginTop:'50px'}}>

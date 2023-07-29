@@ -1,6 +1,6 @@
 // Import necessary dependencies and components
 import React, { Component } from "react";
-import { Button, Form, FormGroup, Label, Input, Alert } from "reactstrap";
+import { Alert, Button, Form, FormGroup, Input, Label } from "reactstrap";
 
 import { auth } from "../firebase";
 
@@ -16,6 +16,11 @@ const INITIAL_STATE = {
   error: null,
   showingAlert: false
 };
+
+// @ref R48_0
+
+//This Component is part of the @ref Model within the overall @ref ModelViewController model.
+//This Component implements the methods related to password changes by the user.
 
 /**
  * PasswordChangeForm is a class component that contains a form to change the password.

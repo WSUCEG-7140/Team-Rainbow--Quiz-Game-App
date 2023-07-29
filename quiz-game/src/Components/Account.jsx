@@ -1,9 +1,15 @@
 import React from "react";
 
 import AuthUserContext from "./AuthUserContext";
-import { PasswordForgetForm } from "./PasswordForget";
 import PasswordChangeForm from "./PasswordChange";
+import { PasswordForgetForm } from "./PasswordForget";
 import withAuthorization from "./withAuthorization"; //redirects to sign in if user not signed in
+
+// @ref R39_0
+
+//This Component is part of the @ref Model within the overall @ref ModelViewController model.
+//This Component implements the methods related to account of the user.
+
 /**
  * Account.jsx is the combination of components, PasswordChange.jsx and PasswordForget.jsx
  *  do same task as the name suggests making use of the appropriate functionality from auth.jsx.
