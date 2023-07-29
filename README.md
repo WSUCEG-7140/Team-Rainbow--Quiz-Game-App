@@ -4,23 +4,45 @@
 
 1) Siri Chandana Sirigiri : @siri0314 <br>
 2) Sushmitha Kishor       : @sushmithakishor23 <br>
-3) Shirini                : @Shirini4 <br>
+3) Sai Shirini Kondasani  : @Shirini4 <br>
 4) Harsha Vardhan Bojanki : @Harsha Bojanki <br>
 5) Teja Mummana           : @MummanaTeja <br>
 6) Sravya Kavuru          : @sravyakavuru4 <br>
 
 <br>
+# Programming By Contract and Literate Programming
 
+##Literate Programming in below files:
+
+ [Project Design](https://github.com/WSUCEG-7140/A-Team/blob/main/design.md)
+
+ [Requirements -linked Issues](https://github.com/WSUCEG-7140/A-Team/blob/main/requirements.md )
+
+ https://github.com/WSUCEG-7140/Team-Rainbow--Quiz-Game-App/blob/main/quiz-game/src/Components/Faculty/FacultyHome.jsx
+ https://github.com/WSUCEG-7140/Team-Rainbow--Quiz-Game-App/blob/main/quiz-game/src/Components/Faculty/AddQuiz.jsx
+ https://github.com/WSUCEG-7140/Team-Rainbow--Quiz-Game-App/blob/main/quiz-game/src/Components/Faculty/EditQuiz.jsx
+ https://github.com/WSUCEG-7140/Team-Rainbow--Quiz-Game-App/blob/main/quiz-game/src/Components/Student/Home.jsx
+ https://github.com/WSUCEG-7140/Team-Rainbow--Quiz-Game-App/blob/main/quiz-game/src/Components/Student/Question.jsx
+ https://github.com/WSUCEG-7140/Team-Rainbow--Quiz-Game-App/blob/main/quiz-game/src/Components/Student/Quiz.jsx
+
+ ##Programming By Contract
+ [SignInPR](https://github.com/WSUCEG-7140/Team-Rainbow--Quiz-Game-App/pull/43#issuecomment-1656519207) <br>
+ [FooterPR](https://github.com/WSUCEG-7140/Team-Rainbow--Quiz-Game-App/pull/81) <br>
+ [NavbarPR](https://github.com/WSUCEG-7140/Team-Rainbow--Quiz-Game-App/pull/94) <br>
+ [E404PR](https://github.com/WSUCEG-7140/Team-Rainbow--Quiz-Game-App/pull/90)<br>
+ [signUpPR](https://github.com/WSUCEG-7140/Team-Rainbow--Quiz-Game-App/pull/98)
+
+
+
+<br>
 #  Embedded Design Documentation <br>
 
-<a href="https://github.com/WSUCEG-7140/Team-Rainbow--Quiz-Game-App/blob/main/quiz-game/docs/index.html ">visit_embedded_design_doc <br>
-To execute docs:
-``` npm install```
-    <br>
-    ```jsdoc src -r -d docs```
-<br>
+[view doc] https://github.com/WSUCEG-7140/Team-Rainbow--Quiz-Game-App/blob/main/quiz-game/docs/index.html
 
-![Alt text](<Embedded Doc.jpeg>)
+      Since this project is developed using ReactJS we used JSdoc to document the design. please clone repository and open index.html to view the webpage. Sample image is attached [here](https://github.com/WSUCEG-7140/Team-Rainbow--Quiz-Game-App/blob/main/Embedded%20Doc.jpeg).
+For executing again install dependencies using <br>$npm install <br>
+     then $jsdoc src -r -d docs
+<br>
 
 #  Quiz Game App - README
 
