@@ -4,23 +4,60 @@
 
 1) Siri Chandana Sirigiri : @siri0314 <br>
 2) Sushmitha Kishor       : @sushmithakishor23 <br>
-3) Shirini                : @Shirini4 <br>
+3) Sai Shirini Kondasani  : @Shirini4 <br>
 4) Harsha Vardhan Bojanki : @Harsha Bojanki <br>
 5) Teja Mummana           : @MummanaTeja <br>
 6) Sravya Kavuru          : @sravyakavuru4 <br>
 
-<br>
 
+#Literate Programming in below files:
+  
+[ProjectDesign](https://github.com/WSUCEG-7140/A-Team/blob/main/design.md)
+
+[Requirements -linked Issues](https://github.com/WSUCEG-7140/A-Team/blob/main/requirements.md) 
+
+[FacultyHome.jsx](https://github.com/WSUCEG-7140/Team-Rainbow--Quiz-Game-App/blob/main/quiz-game/src/Components/Faculty/FacultyHome.jsx)
+
+[AddQuiz.jsx](https://github.com/WSUCEG-7140/Team-Rainbow--Quiz-Game-App/blob/main/quiz-game/src/Components/Faculty/AddQuiz.jsx) 
+
+[EditQuiz.jsx](https://github.com/WSUCEG-7140/Team-Rainbow--Quiz-Game-App/blob/main/quiz-game/src/Components/Faculty/EditQuiz.jsx)
+
+[StudentHome.jsx](https://github.com/WSUCEG-7140/Team-Rainbow--Quiz-Game-App/blob/main/quiz-game/src/Components/Student/Home.jsx)
+
+[Question.jsx](https://github.com/WSUCEG-7140/Team-Rainbow--Quiz-Game-App/blob/main/quiz-game/src/Components/Student/Question.jsx)
+
+[Quiz.jsx](https://github.com/WSUCEG-7140/Team-Rainbow--Quiz-Game-App/blob/main/quiz-game/src/Components/Student/Quiz.jsx)
+
+ #Programming By Contract
+
+  These mentioned PRs states that pre condition: definition of done is equals to post condition: tested code.
+  the unit tests involved are used to ensure that the code written is as per requirements.
+  
+ [SignInPR](https://github.com/WSUCEG-7140/Team-Rainbow--Quiz-Game-App/pull/43#issuecomment-1656519207)
+ 
+ [FooterPR](https://github.com/WSUCEG-7140/Team-Rainbow--Quiz-Game-App/pull/81) 
+ 
+ [NavbarPR](https://github.com/WSUCEG-7140/Team-Rainbow--Quiz-Game-App/pull/94) 
+
+ [signUpPR](https://github.com/WSUCEG-7140/Team-Rainbow--Quiz-Game-App/issues/31)
+ 
+ [E404PR](https://github.com/WSUCEG-7140/Team-Rainbow--Quiz-Game-App/pull/70)
+
+  
+ 
+
+
+
+
+<br>
 #  Embedded Design Documentation <br>
 
-<a href="https://github.com/WSUCEG-7140/Team-Rainbow--Quiz-Game-App/blob/main/quiz-game/docs/index.html ">visit_embedded_design_doc <br>
-To execute docs:
-``` npm install```
-    <br>
-    ```jsdoc src -r -d docs```
-<br>
+[view doc](https://github.com/WSUCEG-7140/Team-Rainbow--Quiz-Game-App/blob/main/quiz-game/docs/index.html)
 
-![Alt text](<Embedded Doc.jpeg>)
+      Since this project is developed using ReactJS we used JSdoc to document the design. please clone repository and open index.html to view the webpage. Sample image is attached [here](https://github.com/WSUCEG-7140/Team-Rainbow--Quiz-Game-App/blob/main/Embedded%20Doc.jpeg).
+For executing again install dependencies using <br>$npm install <br>
+     then $jsdoc src -r -d docs
+<br>
 
 #  Quiz Game App - README
 
